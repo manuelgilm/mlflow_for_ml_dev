@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/manue/Documents/projects/mlflow_for_ml_dev/testing_mlflow1_artifacts/33881fdbb83b438281563ea80e82a667/artifacts
+deleted_time: 1684103766453
+end_time: 1684102423992
+entry_point_name: ''
+experiment_id: '896296360431059581'
+lifecycle_stage: deleted
+run_id: 33881fdbb83b438281563ea80e82a667
+run_name: logging_models
+run_uuid: 33881fdbb83b438281563ea80e82a667
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1684102421229
+status: 3
+tags: []
+user_id: manue
