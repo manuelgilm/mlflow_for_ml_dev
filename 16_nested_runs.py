@@ -8,7 +8,7 @@ experiment_id = create_mlflow_experiment(
 )
 
 
-with mlflow.start_run(run_name="parent", ) as parent:
+with mlflow.start_run(run_name="parent") as parent:
     print("RUN ID parent:", parent.info.run_id)
 
     mlflow.log_param("parent_param", "parent_value")
