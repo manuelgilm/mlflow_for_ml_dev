@@ -6,11 +6,10 @@ from mlflow.types.schema import Schema
 from mlflow.types.schema import ParamSchema
 from mlflow.types.schema import ParamSpec
 from mlflow.types.schema import ColSpec
-
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
 import pandas as pd
 from typing import Tuple
-from sklearn.ensemble import RandomForestClassifier
 
 
 def get_train_data() -> Tuple[pd.DataFrame]:
@@ -29,27 +28,27 @@ def get_train_data() -> Tuple[pd.DataFrame]:
 
 if __name__ == "__main__":
     x_train, y_train = get_train_data()
-    # cols_spec = []
-    # data_map = {
-    #     'int64': 'integer',
-    #     'float64': 'double',
-    #     'bool': 'boolean',
-    #     'str': 'string',
-    #     "date": 'datetime'
-    # }
+    cols_spec = []
+    data_map = {
+        'int64': 'integer',
+        'float64': 'double',
+        'bool': 'boolean',
+        'str': 'string',
+        "date": 'datetime'
+    }
 
-    # for name, dtype in x_train.dtypes.to_dict().items():
-    #     cols_spec.append(ColSpec(name=name, type=data_map[str(dtype)]))
+    for name, dtype in x_train.dtypes.to_dict().items():
+        cols_spec.append(ColSpec(name=name, type=data_map[str(dtype)]))
 
-    # input_schema = Schema(inputs=cols_spec)
-    # output_schema = Schema([ColSpec(name="label", type="integer")])
+    input_schema = Schema(inputs=cols_spec)
+    output_schema = Schema([ColSpec(name="label", type="integer")])
 
-    # parameter = ParamSpec(name="model_name", dtype="string", default="model1")
-    # param_schema = ParamSchema(params=[parameter])
+    parameter = ParamSpec(name="model_name", dtype="string", default="model1")
+    param_schema = ParamSchema(params=[parameter])
 
-    # # model_signature = ModelSignature(inputs=input_schema, outputs=output_schema, params=param_schema)
-    # # print("MODEL SIGNATURE")
-    # # print(model_signature.to_dict())
+    model_signature = ModelSignature(inputs=input_schema, outputs=output_schema, params=param_schema)
+    print("MODEL SIGNATURE")
+    print(model_signature.to_dict())
 
     model_signature = infer_signature(x_train, y_train, params={"model_name": "model1"})
     print("MODEL SIGNATURE")
