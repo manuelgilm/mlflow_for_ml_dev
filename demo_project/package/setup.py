@@ -7,5 +7,5 @@ setup(
     author="Manuel Gil",
     author_email="manuelgilsitio@gmail.com",
     packages=['package.feature', 'package.ml_training', "package.utils"],
-    # install_requires=['numpy', 'pandas', 'scikit-learn', 'matplotlib', 'mlflow']
+    install_requires=['numpy', 'pandas', 'scikit-learn', 'matplotlib', 'mlflow==2.3.1']
 )

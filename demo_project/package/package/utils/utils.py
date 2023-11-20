@@ -36,10 +36,10 @@ def get_performance_plots(y_true:pd.DataFrame, y_pred:pd.DataFrame, prefix:str)-
     RocCurveDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
 
     cm_figure = plt.figure()    
-    cm = ConfusionMatrixDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
+    ConfusionMatrixDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
 
     pr_figure = plt.figure()
-    pr_curve = PrecisionRecallDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
+    PrecisionRecallDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
 
     return {
         f"{prefix}_roc_curve": roc_figure,

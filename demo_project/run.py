@@ -11,7 +11,7 @@ if __name__ == '__main__':
     experiment_name = "house_pricing_classifier"
     run_name = "training_classifier"
     df = get_feature_dataframe()
-    print(df.head())
+    # print(df.head())
 
     x_train, x_test, x_score, y_train, y_test, y_score = get_train_test_score_set(df)
 
