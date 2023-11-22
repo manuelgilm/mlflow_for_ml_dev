@@ -1,16 +1,25 @@
-import mlflow 
+import mlflow
 from sklearn.metrics import RocCurveDisplay
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import PrecisionRecallDisplay
-import pandas as pd 
+import pandas as pd
 from typing import Dict
 
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import roc_auc_score
+
+
 import matplotlib.pyplot as plt
-def set_or_create_experiment(experiment_name:str)->str:
+
+
+def set_or_create_experiment(experiment_name: str) -> str:
     """
     Get or create an experiment.
 
-    :param experiment_name: Name of the experiment. 
+    :param experiment_name: Name of the experiment.
     :return: Experiment ID.
     """
 
@@ -22,8 +31,11 @@ def set_or_create_experiment(experiment_name:str)->str:
         mlflow.set_experiment(experiment_name=experiment_name)
 
     return experiment_id
-    
-def get_performance_plots(y_true:pd.DataFrame, y_pred:pd.DataFrame, prefix:str)->Dict[str, any]:
+
+
+def get_performance_plots(
+    y_true: pd.DataFrame, y_pred: pd.DataFrame, prefix: str
+) -> Dict[str, any]:
     """
     Get performance plots.
 
@@ -35,7 +47,7 @@ def get_performance_plots(y_true:pd.DataFrame, y_pred:pd.DataFrame, prefix:str)-
     roc_figure = plt.figure()
     RocCurveDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
 
-    cm_figure = plt.figure()    
+    cm_figure = plt.figure()
     ConfusionMatrixDisplay.from_predictions(y_true, y_pred, ax=plt.gca())
 
     pr_figure = plt.figure()
@@ -44,7 +56,27 @@ def get_performance_plots(y_true:pd.DataFrame, y_pred:pd.DataFrame, prefix:str)-
     return {
         f"{prefix}_roc_curve": roc_figure,
         f"{prefix}_confusion_matrix": cm_figure,
-        f"{prefix}_precision_recall_curve": pr_figure
+        f"{prefix}_precision_recall_curve": pr_figure,
     }
 
 
+def get_classification_metrics(
+    y_true: pd.DataFrame, y_pred: pd.DataFrame, prefix: str
+) -> Dict[str, float]:
+    """
+    Log classification metrics.
+
+    :param y_true: True labels.
+    :param y_pred: Predicted labels.
+    :param prefix: Prefix for the metric names.
+    :return: Classification metrics.
+    """
+    metrics = {
+        f"{prefix}_accuracy": accuracy_score(y_true, y_pred),
+        f"{prefix}_precision": precision_score(y_true, y_pred),
+        f"{prefix}_recall": recall_score(y_true, y_pred),
+        f"{prefix}_f1": f1_score(y_true, y_pred),
+        f"{prefix}_roc_auc": roc_auc_score(y_true, y_pred),
+    }
+
+    return metrics
