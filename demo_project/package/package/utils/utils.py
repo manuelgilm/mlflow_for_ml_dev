@@ -80,3 +80,18 @@ def get_classification_metrics(
     }
 
     return metrics
+
+def register_model_with_client(model_name: str, run_id: str, artifact_path: str):
+    """
+    Register a model.
+
+    :param model_name: Name of the model.
+    :param run_id: Run ID.  
+    :param artifact_path: Artifact path.
+
+    :return: None.
+    """
+    client = mlflow.tracking.MlflowClient()
+    client.create_registered_model(model_name)
+    client.create_model_version(name=model_name, source=f"runs:/{run_id}/{artifact_path}")
+        
