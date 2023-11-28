@@ -1,7 +1,14 @@
 import mlflow
 from typing import Any
 
-def create_mlflow_experiment(experiment_name: str, artifact_location: str, tags:dict[str,Any]) -> str:
+import pandas as pd
+
+from sklearn.datasets import make_classification
+
+
+def create_mlflow_experiment(
+    experiment_name: str, artifact_location: str, tags: dict[str, Any]
+) -> str:
     """
     Create a new mlflow experiment with the given name and artifact location.
 
@@ -9,9 +16,9 @@ def create_mlflow_experiment(experiment_name: str, artifact_location: str, tags:
     ----------
     experiment_name: str
         The name of the experiment to create.
-    artifact_location: str  
-        The artifact location of the experiment to create.  
-    tags: dict[str,Any] 
+    artifact_location: str
+        The artifact location of the experiment to create.
+    tags: dict[str,Any]
         The tags of the experiment to create.
 
     Returns:
@@ -32,10 +39,12 @@ def create_mlflow_experiment(experiment_name: str, artifact_location: str, tags:
     return experiment_id
 
 
-def get_mlflow_experiment(experiment_id:str=None, experiment_name:str=None) -> mlflow.entities.Experiment:
+def get_mlflow_experiment(
+    experiment_id: str = None, experiment_name: str = None
+) -> mlflow.entities.Experiment:
     """
     Retrieve the mlflow experiment with the given id or name.
-    
+
     Parameters:
     ----------
     experiment_id: str
@@ -56,10 +65,13 @@ def get_mlflow_experiment(experiment_id:str=None, experiment_name:str=None) -> m
         raise ValueError("Either experiment_id or experiment_name must be provided.")
     return experiment
 
-def delete_mlflow_experiment(experiment_id:str=None, experiment_name:str=None) -> None:
+
+def delete_mlflow_experiment(
+    experiment_id: str = None, experiment_name: str = None
+) -> None:
     """
     Delete the mlflow experiment with the given id or name.
-    
+
     Parameters:
     ----------
     experiment_id: str
@@ -74,5 +86,26 @@ def delete_mlflow_experiment(experiment_id:str=None, experiment_name:str=None) -
         experiment_id = experiment.experiment_id
         mlflow.delete_experiment(experiment_id)
     else:
-        raise ValueError("Either experiment_id or experiment_name must be provided.")   
-    
+        raise ValueError("Either experiment_id or experiment_name must be provided.")
+
+
+def create_dataset(
+    n_samples: int = 10000, n_features: int = 50, n_informative: int = 10
+) -> pd.DataFrame:
+    """
+    Create a dataset for testing purposes.
+
+    :return: pd.DataFrame
+    """
+
+    x, y = make_classification(
+        n_samples=n_samples,
+        n_features=n_features,
+        n_informative=n_informative,
+        random_state=42,
+    )
+
+    df = pd.DataFrame(x, columns=[f"feature_{i}" for i in range(n_features)])
+    df["target"] = y
+
+    return df
