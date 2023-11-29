@@ -90,11 +90,17 @@ def delete_mlflow_experiment(
 
 
 def create_dataset(
-    n_samples: int = 10000, n_features: int = 50, n_informative: int = 10
+    n_samples: int = 10000,
+    n_features: int = 50,
+    n_informative: int = 10,
+    class_sep: float = 1.0,
 ) -> pd.DataFrame:
     """
     Create a dataset for testing purposes.
 
+    :param n_samples: The number of samples.
+    :param n_features: The number of features.
+    :param n_informative: The number of informative features.
     :return: pd.DataFrame
     """
 
@@ -102,6 +108,7 @@ def create_dataset(
         n_samples=n_samples,
         n_features=n_features,
         n_informative=n_informative,
+        class_sep=class_sep,
         random_state=42,
     )
 
