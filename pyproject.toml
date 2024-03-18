@@ -1,9 +1,17 @@
 [tool.poetry]
 name = "mlflow_for_ml_dev"
-version = "0.1.0"
-description = ""
+version = "0.1.2"
+description = "Code examples for the youtube playlist 'MLflow for Machine Learning Development' by Manuel Gil"
 authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
 readme = "README.md"
+mainteiners = ["Manuel Gil <manuelgilsitio@gmail.com>"]
+repository = "https://github.com/manuelgilm/mlflow_for_ml_dev"
+license = "MIT"
+keywords = ["mlflow", "machine learning", "development", "youtube", "tutorial"]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
