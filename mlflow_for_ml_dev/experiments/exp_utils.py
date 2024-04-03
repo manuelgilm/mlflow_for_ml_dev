@@ -1,6 +1,7 @@
 from mlflow_for_ml_dev.utils.utils import get_root_project
 from mlflow.entities.experiment import Experiment
-
+from mlflow.entities.model_registry.registered_model import RegisteredModel
+from mlflow.entities.model_registry.model_version import ModelVersion
 from typing import Optional 
 from typing import Dict
 
@@ -50,4 +51,31 @@ def print_experiment_info(experiment: Experiment):
     print(f"Tags: {experiment.tags}")
     print(f"Lifecycle_stage: {experiment.lifecycle_stage}")
     print("\n \n")
+
+
+def print_registered_model_info(registered_model: RegisteredModel)-> None:
+    """
+    Print registered model information.
+
+    :param registered_model: An instance of mlflow.entities.model_registry.registered_model.RegisteredModel.
+    """
+    print("\n Registered Model Information \n")
+    print(f"Name: {registered_model.name}")
+    print(f"Aliases: {registered_model.aliases}")
+    print(f"Tags: {registered_model.tags}")
+    print(f"Description: {registered_model.description}")
+    print("\n \n")
+
+def print_model_version_info(model_version:ModelVersion):
+    """
+    Print model version information.
+
+    :param model_version: An instance of mlflow.entities.model_registry.model_version.ModelVersion.
+    """
+    print("\n Model Version Information \n")
+    print(f"Version: {model_version.version}")
+    print(f"Tags: {model_version.tags}")
+    print(f"Description: {model_version.description}")
+    print(f"Aliases: {model_version.aliases}")
+
 
