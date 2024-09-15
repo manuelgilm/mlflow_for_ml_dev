@@ -62,7 +62,15 @@ After installing Poetry, to create the virtual environment (.venv) you can run:
     `pip install -r requirements.txt`
 
 
+## Content: 
 
+- `mlflow_for_ml_dev` package
+    - notebooks 
+        - experiments.
+            * Main Concepts.
+            * Retrieve Experiments.
+            * Restore Experiments.
+            
 ## Contributing
 
 If you want to contribute to this project and make it better, your help is very welcome. Contributing is also a great way to learn more and improve your skills. You can contribute in different ways:
