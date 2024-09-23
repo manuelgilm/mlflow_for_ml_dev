@@ -31,9 +31,9 @@ def get_or_create_experiment(
     # If the experiment does not exist, create it
     if experiment is None:
         experiment_id = mlflow.create_experiment(experiment_name, tags=tags)
-        experiment = mlflow.get_experiment(experiment_id)
+        print(f"Experiment with name {experiment_name} and ID {experiment_id} created.")
 
-    mlflow.set_experiment(experiment_name=experiment_name)
+    experiment = mlflow.set_experiment(experiment_name=experiment_name)
 
     return experiment
 
