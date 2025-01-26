@@ -2,18 +2,22 @@ services:
 
   jupyter: 
     environment:
-      - JUPYTER_ENABLE_LAB=yes
+      - MLFLOW_TRACKING_URI=http://mlflow-server:5000
     build: 
       context: .
       dockerfile: ./docker/jupyter/Dockerfile
     ports:
       - 8888:8888
 
+    depends_on:
+      - mlflow-server
+
   mlflow-server:
     build:
       context: .
       dockerfile: ./docker/mlflow/Dockerfile
     environment:
+      - MLFLOW_BACKEND_STORE=/home/
       - MLFLOW_ARTIFACT_STORE=/home/artifacts
     expose:
       - "5000"
