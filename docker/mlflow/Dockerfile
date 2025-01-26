@@ -5,4 +5,6 @@ COPY . /mlflow_for_ml_dev
 RUN pip3 install poetry 
 RUN poetry install
 WORKDIR /mlflow_for_ml_dev/notebooks
-CMD ["poetry", "run", "mlflow", "ui", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["poetry", "run", "mlflow", "server", \
+        "--default-artifact-root", "$MLFLOW_ARTIFACT_STORE", \
+        "--host", "0.0.0.0", "--port", "5000"]
