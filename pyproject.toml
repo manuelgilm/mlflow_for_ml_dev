@@ -13,7 +13,8 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 include = [
-    { path = "mlflow_for_ml_dev/notebooks", format = ["sdist", "wheel"] }
+    { path = "mlflow_for_ml_dev/notebooks", format = ["sdist", "wheel"] },
+    { path = "mlflow_for_ml_dev", format=["sdist", "wheel"]}
 ]
 
 [tool.poetry.dependencies]
