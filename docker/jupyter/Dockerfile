@@ -10,7 +10,18 @@
 # Pick your favorite docker-stacks image
 FROM quay.io/jupyter/minimal-notebook
 
-USER root
 
 # Install mlflow 
-RUN pip install mlflow
+
+# # Moving relevant files to the container
+RUN mkdir -p mlflow_for_ml_dev/mlflow_for_ml_dev
+COPY /mlflow_for_ml_dev/ mlflow_for_ml_dev/mlflow_for_ml_dev
+COPY pyproject.toml pyproject.toml poetry.toml README.md /home/jovyan/mlflow_for_ml_dev/
+WORKDIR /home/jovyan/mlflow_for_ml_dev
+RUN pip install poetry
+RUN poetry install --without dev
+
+
+
+
+
