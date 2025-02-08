@@ -1,29 +1,27 @@
 services:
 
   jupyter: 
-    environment:
-      - MLFLOW_TRACKING_URI=http://mlflow-server:5000
     build: 
       context: .
-      dockerfile: ./docker/jupyter/Dockerfile
+      dockerfile: docker/jupyter/Dockerfile
     ports:
       - 8888:8888
 
     depends_on:
-      - mlflow-server
+      - tracking_service
 
-  mlflow-server:
-    build:
-      context: .
-      dockerfile: ./docker/mlflow/Dockerfile
-    environment:
-      - MLFLOW_BACKEND_STORE=/home/
-      - MLFLOW_ARTIFACT_STORE=/home/artifacts
-    expose:
-      - "5000"
+  tracking_service:
+    image: ghcr.io/mlflow/mlflow:v2.20.1
     ports:
-      - "5000:5000"
+      - "8000:8000"
+    environment:
+      MLFLOW_BACKEND_STORE_URI : "sqlite:///mlflow/backend/mlflow.db"
+      MLFLOW_HOST : "0.0.0.0"
+      MLFLOW_PORT : "8000"
     volumes:
-      - ./mlruns:/home/mlruns:rw
-      - ./models:/home/artifacts:ro    
+      - mlflow-backend-store:/mlflow/backend/
+    command: ["mlflow", "server"]
+
+volumes:
+  mlflow-backend-store:    
       
