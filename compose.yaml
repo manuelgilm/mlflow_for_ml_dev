@@ -3,10 +3,12 @@ services:
   jupyter: 
     build: 
       context: .
-      dockerfile: docker/jupyter/Dockerfile
+      dockerfile: jupyter/Dockerfile
     ports:
       - 8888:8888
-
+    environment:
+      MLFLOW_TRACKING_URI: http://tracking_service:8000
+      GIT_PYTHON_REFRESH: quiet
     depends_on:
       - tracking_service
 
