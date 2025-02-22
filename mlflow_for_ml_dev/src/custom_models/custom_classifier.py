@@ -128,4 +128,3 @@ class CustomClassifier(mlflow.pyfunc.PythonModel):
         )
         self.log_drift_detection(drift_results)
         return self.model.predict(model_input)
-

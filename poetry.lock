@@ -3921,6 +3921,21 @@ files = [
 ]
 
 [[package]]
+name = "ucimlrepo"
+version = "0.0.7"
+description = "Package to easily import datasets from the UC Irvine Machine Learning Repository into scripts and notebooks."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "ucimlrepo-0.0.7-py3-none-any.whl", hash = "sha256:0a5ce7e21d7ec850a0da4427c47f9dd96fcc6532f1c7e95dcec63eeb40f08026"},
+    {file = "ucimlrepo-0.0.7.tar.gz", hash = "sha256:4cff3f9e814367dd60956da999ace473197237b9fce4c07e9a689e77b4ffb59a"},
+]
+
+[package.dependencies]
+certifi = ">=2020.12.5"
+pandas = ">=1.0.0"
+
+[[package]]
 name = "uri-template"
 version = "1.3.0"
 description = "RFC 6570 URI Template Processor"
@@ -4182,4 +4197,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c5c1f038872d615eb6de041de03c9e30c5f7c5d2dd8510a663b2026dee1f574d"
+content-hash = "9fd41012f4cecee26124f3c78af63cee0e7f4ccaa6975822d3468f014833cbdb"
