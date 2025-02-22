@@ -25,6 +25,8 @@ shap = "0.46.0"
 pynvml = "^12.0.0"
 seaborn = "^0.13.2"
 ucimlrepo = "^0.0.7"
+keras = "^3.8.0"
+torch = "^2.6.0"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.32.0"
