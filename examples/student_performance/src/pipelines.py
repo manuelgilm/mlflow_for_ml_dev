@@ -6,7 +6,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 from typing import List
 from typing import Optional
-
+from examples.utils.file_utils import read_file
 
 def get_sklearn_pipeline(
     numerical_columns: Optional[List[str]] = None,
@@ -39,8 +39,12 @@ def get_sklearn_pipeline(
 
     return pipeline
 
-def create_features():
-    pass 
+def create_training_and_testing_dataset():
+    """
+    Create training and testing datasets.
+    """
+    dataset = read_file()
+    
 
 def get_features():
     pass

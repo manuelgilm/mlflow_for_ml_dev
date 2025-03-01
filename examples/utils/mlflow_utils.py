@@ -22,3 +22,12 @@ def get_or_create_experiment(
     experiment = mlflow.set_experiment(experiment_name=name)
 
     return experiment
+
+def set_mlflow_tracking_uri(path: str) -> None:
+    """
+    Set the MLflow tracking URI.
+
+    :param path: Path to the MLflow tracking server.
+    """
+
+    mlflow.set_tracking_uri(path)
