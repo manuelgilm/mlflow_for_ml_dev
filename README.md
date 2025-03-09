@@ -4,6 +4,8 @@ This repository is part of the playlist on Youtube named: MLflow for Machine Lea
 
 # Notebooks 
 
+## Experiment Tracking Fundamentals
+
 A series of notebooks is provided to follow along the playlist, there are two folders with notebooks that addresses two main topics. 
 
 The fundamentals of experiment tracking and machine learning development with MLflow are explored in the notebooks under this topic. It addresses the concepts of Experiment and Run, and the metadata involved during ML model development, such as metrics, artifacts, parameters, and tags. Additionally, it covers tracking ML models using MLflow flavors, including how to provide signatures, input examples, and other metadata with the model.
