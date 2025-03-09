@@ -1,8 +1,17 @@
 # MLflow for Machine Learning Development
 
-This repository is part of the playlist on Youtube named: MLflow for Machine Learning Development with Databricks (yet to be created)
+This repository is part of the playlist on Youtube named: MLflow for Machine Learning Development (yet to be created)
 
 # Notebooks 
+
+A series of notebooks is provided to follow along the playlist, there are two folders with notebooks that addresses two main topics. 
+
+The fundamentals of experiment tracking and machine learning development with MLflow are explored in the notebooks under this topic. It addresses the concepts of Experiment and Run, and the metadata involved during ML model development, such as metrics, artifacts, parameters, and tags. Additionally, it covers tracking ML models using MLflow flavors, including how to provide signatures, input examples, and other metadata with the model.
+
+Custom model creation is also addressed in this section, demonstrating how to use the Pyfunc Flavor to define your custom model using a Python function or Python class. Finally, it covers concepts associated with the Model Registry, including Model objects, Model versions, aliases, and Model Registry operations.
+
+## Traditional ML Model Evaluation.
+
 
 # Package: `mlflow_for_ml_dev`
 
