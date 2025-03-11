@@ -3,10 +3,17 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import classification_report
 
 from typing import List
 from typing import Optional
-from examples.utils.file_utils import read_file
+
+from examples.student_performance.src.data_processing import get_categorical_features
+from examples.student_performance.src.data_processing import get_numerical_features
+from examples.student_performance.src.data_processing import (
+    create_training_and_testing_dataset,
+)
+
 
 def get_sklearn_pipeline(
     numerical_columns: Optional[List[str]] = None,
@@ -39,12 +46,17 @@ def get_sklearn_pipeline(
 
     return pipeline
 
-def create_training_and_testing_dataset():
-    """
-    Create training and testing datasets.
-    """
-    dataset = read_file()
-    
 
-def get_features():
-    pass
+def training_pipeline():
+    numerical_columns = get_numerical_features()
+    categorical_columns = get_categorical_features()
+    x_train, x_test, y_train, y_test = create_training_and_testing_dataset()
+
+    pipeline = get_sklearn_pipeline(
+        numerical_columns=numerical_columns, categorical_columns=categorical_columns
+    )
+    pipeline.fit(x_train, y_train)
+
+    predictions = pipeline.predict(x_test)
+    print(classification_report(y_test, predictions))
+    return pipeline

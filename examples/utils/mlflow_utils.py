@@ -3,6 +3,7 @@ from typing import Dict
 from typing import Optional
 from pathlib import Path
 
+
 def get_or_create_experiment(
     name: str, tags: Optional[Dict[str, str]] = None
 ) -> mlflow.entities.Experiment:
@@ -22,6 +23,7 @@ def get_or_create_experiment(
     experiment = mlflow.set_experiment(experiment_name=name)
 
     return experiment
+
 
 def set_mlflow_tracking_uri(path: str) -> None:
     """

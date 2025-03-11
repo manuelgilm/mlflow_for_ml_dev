@@ -1,9 +1,19 @@
 from pathlib import Path
 from typing import Optional
 from typing import Union
-import pandas as pd 
+import pandas as pd
 
-def read_csv(file_path:Path):
+
+def get_root_dir() -> Path:
+    """
+    Get the root directory of the project.
+
+    :return root_dir: Path to the root directory.
+    """
+    return Path(__file__).parents[1]
+
+
+def read_csv(file_path: Path):
     """
     Read a CSV file and return a DataFrame.
 
@@ -24,6 +34,7 @@ def reader(extension: str) -> Optional[callable]:
 
     return readers.get(extension, None)
 
+
 def read_file(path: Union[str, Path]) -> str:
     """
     Read a file and return its contents as a string.
@@ -37,7 +48,6 @@ def read_file(path: Union[str, Path]) -> str:
     extension = path.suffix
 
     reader_func = reader(extension)
-    
+
     if reader_func:
         return reader_func(path)
-    
