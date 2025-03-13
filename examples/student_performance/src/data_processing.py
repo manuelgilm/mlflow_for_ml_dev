@@ -3,6 +3,7 @@ from examples.utils.file_utils import read_file
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from typing import Tuple
+from typing import List
 import pandas as pd
 
 
@@ -13,7 +14,7 @@ def create_training_and_testing_dataset(
     Create training and testing datasets.
 
     :param test_size: The proportion of the dataset to include in the test split.
-    :return dataset: The dataset.
+    :return dataset: The training and testing datasets.
     """
 
     # Get the root directory.
@@ -37,14 +38,14 @@ def create_training_and_testing_dataset(
     return x_train, x_test, y_train, y_test
 
 
-def get_numerical_features():
+def get_numerical_features() -> List[str]:
     """
     Get numerical features from a DataFrame.
     """
     return ["Age", "StudyTimeWeekly", "Absences", "GPA"]
 
 
-def get_categorical_features():
+def get_categorical_features() -> List[str]:
     """
     Get categorical features from a DataFrame.
     """

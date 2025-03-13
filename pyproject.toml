@@ -35,7 +35,7 @@ jupyter = "^1.1.1"
 
 [tool.poetry.scripts]
 start_tutorial = 'mlflow_for_ml_dev.entrypoints.start_tutorial:run_notebook'
-train = 'examples.entrypoint:main'
+log_sklearn_model = 'examples.student_performance.entrypoint:log_sklearn_pipeline'
 
 [build-system]
 requires = ["poetry-core"]

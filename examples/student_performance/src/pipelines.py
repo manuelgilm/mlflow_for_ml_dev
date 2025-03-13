@@ -1,62 +1,114 @@
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.metrics import classification_report
-
 from typing import List
-from typing import Optional
-
-from examples.student_performance.src.data_processing import get_categorical_features
-from examples.student_performance.src.data_processing import get_numerical_features
-from examples.student_performance.src.data_processing import (
-    create_training_and_testing_dataset,
-)
+import pandas as pd
 
 
-def get_sklearn_pipeline(
-    numerical_columns: Optional[List[str]] = None,
-    categorical_columns: Optional[List[str]] = None,
-) -> Pipeline:
-    """
-    Get a scikit-learn pipeline for a classification task.
-    raise ValueError: If both numerical_columns and categorical_columns are None.
+class TrainingPipeline:
 
-    :param numerical_columns: List of numerical columns.
-    :param categorical_columns: List of categorical columns.
-    :return pipeline: The scikit-learn pipeline.
-    """
+    def __init__(
+        self,
+        algo: str,
+        numerical_columns: List[str],
+        categorical_columns: List[str],
+        target_column: str,
+    ) -> None:
+        """
+        Initialize the TrainingPipeline class.
 
-    if not numerical_columns and not categorical_columns:
-        raise ValueError(
-            "At least one of numerical_columns or categorical_columns must be provided."
+        :param algo: The algorithm to use.
+        :param numerical_columns: List of numerical columns.
+        :param categorical_columns: List of categorical columns.
+        :param target_column: The target column.
+        """
+        self.numerical_columns = numerical_columns
+        self.categorical_columns = categorical_columns
+        self.target_column = target_column
+        self.pipeline = self._get_sklearn_pipeline(algo)
+
+    def _get_model(self, algo: str):
+        """
+        Get the appropriate model based on the algorithm.
+        Raise ValueError: If the model is not supported.
+
+        :param algo: The algorithm to use.
+        :return model: The scikit-learn model.
+        """
+
+        allowed_algos = {
+            "random_forest": RandomForestClassifier,
+            "decision_tree": DecisionTreeClassifier,
+        }
+
+        model = allowed_algos.get(algo, None)
+
+        if not model:
+            raise ValueError(f"Ml model {algo} not supported")
+        return model
+
+    def _get_sklearn_pipeline(
+        self,
+        algo: str,
+    ) -> Pipeline:
+        """
+        Get a scikit-learn pipeline for a classification task.
+        raise ValueError: If both numerical_columns and categorical_columns are None.
+
+        :param algo: The algorithm to use.
+        :return pipeline: The scikit-learn pipeline.
+        """
+        model = self._get_model(algo)
+        if not self.numerical_columns and not self.categorical_columns:
+            raise ValueError(
+                "At least one of numerical_columns or categorical_columns must be provided."
+            )
+
+        preprocessor = ColumnTransformer(
+            transformers=[
+                ("numerical", StandardScaler(), self.numerical_columns),
+                ("categorical", OneHotEncoder(), self.categorical_columns),
+            ]
         )
 
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ("numerical", StandardScaler(), numerical_columns),
-            ("categorical", OneHotEncoder(), categorical_columns),
-        ]
-    )
+        pipeline = Pipeline(
+            steps=[("preprocessor", preprocessor), ("classifier", model())]
+        )
 
-    pipeline = Pipeline(
-        steps=[("preprocessor", preprocessor), ("classifier", RandomForestClassifier())]
-    )
+        return pipeline
 
-    return pipeline
+    def train(self, x_train, y_train):
+        """
+        Train the pipeline.
 
+        :param x_train: The training features.
+        :param y_train: The training target.
+        :return pipeline: The trained pipeline.
+        """
+        if self.pipeline is None:
+            raise ValueError("The pipeline must be initialized before training.")
+        self.pipeline.fit(x_train, y_train)
+        return self.pipeline
 
-def training_pipeline():
-    numerical_columns = get_numerical_features()
-    categorical_columns = get_categorical_features()
-    x_train, x_test, y_train, y_test = create_training_and_testing_dataset()
+    def predict(self, x_test) -> pd.DataFrame:
+        """
+        Score the pipeline.
+        Raise ValueError: If the pipeline is not trained.
 
-    pipeline = get_sklearn_pipeline(
-        numerical_columns=numerical_columns, categorical_columns=categorical_columns
-    )
-    pipeline.fit(x_train, y_train)
+        :param x_test: The testing features.
+        :return: The classification report.
+        """
+        if self.pipeline is None:
+            raise ValueError("The pipeline must be trained before scoring.")
 
-    predictions = pipeline.predict(x_test)
-    print(classification_report(y_test, predictions))
-    return pipeline
+        predictions = self.pipeline.predict(x_test)
+        predictions_proba = self.pipeline.predict_proba(x_test)
+        predictions_proba = [max(p) for p in predictions_proba]
+
+        return pd.DataFrame(
+            {"predictions": predictions, "predictions_proba": predictions_proba}
+        )
+    

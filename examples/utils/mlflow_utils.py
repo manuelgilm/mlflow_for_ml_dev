@@ -15,9 +15,9 @@ def get_or_create_experiment(
     :return experiment: The experiment object.
     """
 
-    experiment = mlflow.get_experiment_by_name(name=name, tags=tags)
+    experiment = mlflow.get_experiment_by_name(name=name)
     if experiment is None:
-        experiment_id = mlflow.create_experiment(name)
+        experiment_id = mlflow.create_experiment(name, tags=tags)
         print(f"Experiment created with ID: {experiment_id}")
 
     experiment = mlflow.set_experiment(experiment_name=name)
