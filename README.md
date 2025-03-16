@@ -79,7 +79,7 @@ After installing Poetry, to create the virtual environment (.venv) you can run:
 - `mlflow_for_ml_dev` package
     - notebooks 
         - experiment Tracking Fundamentals.
-            * Starting with MLflow Experiments. Notebook: [1_1_experiments_create_experiments](mlflow_for_ml_dev\notebooks\experiment_tracking_fundamentals\1_1_experiments_create_experiments.ipynb):
+            * Starting with MLflow Experiments. Notebook: [1_1_experiments_create_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_1_experiments_create_experiments.ipynb):
                 - video: 
                 - video: 
             * Retrieve Experiments. Notebook: [1_2_experiments_retrieve_experiment](mlflow_for_ml_dev\notebooks\experiment_tracking_fundamentals\1_1_experiments_create_experiments.ipynb).
