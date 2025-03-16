@@ -19,9 +19,10 @@ def log_sklearn_pipeline():
     numerical_columns = get_numerical_features()
     categorical_columns = get_categorical_features()
     target_column = "GradeClass"
-
+    algo = "random_forest"
+    experiment_name = "rf_classifier_sp"
     pipeline = TrainingPipeline(
-        algo="random_forest",
+        algo=algo,
         numerical_columns=numerical_columns,
         categorical_columns=categorical_columns,
         target_column=target_column,
@@ -41,8 +42,8 @@ def log_sklearn_pipeline():
     mlflow.set_tracking_uri(get_project_root() / "mlruns")
     # set experiment
     experiment = get_or_create_experiment(
-        name="rf_classifier_sp",
-        tags={"algo": "random_forest", "project_name": "student_performance"},
+        name=experiment_name,
+        tags={"algo": algo, "project_name": "student_performance"},
     )
     # set the experiment description
     mlflow.set_experiment_tag(
@@ -52,13 +53,14 @@ def log_sklearn_pipeline():
 
     model_signature = infer_signature(x_test, y_test)
     with mlflow.start_run(
-        run_name="rf_classifier_sp", experiment_id=experiment.experiment_id
+        experiment_id=experiment.experiment_id
     ):
         # Set description for the run
         mlflow.set_tag(
             "mlflow.note.content", "Run to test the random forest classifier."
         )
-        mlflow.log_param("algo", "random_forest")
+        mlflow.set_tag("algo", algo)
+        mlflow.set_tag("project_name", "student_performance")
         mlflow.log_params(pipeline.pipeline.get_params())
         mlflow.log_dict(
             dictionary=metric_report, artifact_file="classification_report.json"
@@ -79,12 +81,15 @@ def student_performance_inference():
     """
     Function to perform inference on the student performance dataset.
     """
+    experiment_name = "rf_classifier_sp"
+    algo = "random_forest"
     # set tracking uri
     mlflow.set_tracking_uri(get_project_root() / "mlruns")
 
     # search for the run 
     runs = mlflow.search_runs(
-        experiment_names = ["rf_classifier_sp"],
+        experiment_names = [experiment_name],
+        filter_string=f"tags.algo = '{algo}'",
         order_by=["metrics.f1_score desc"],
 
     )
