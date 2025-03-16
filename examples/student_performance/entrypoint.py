@@ -32,6 +32,7 @@ def log_sklearn_pipeline():
 
     predictions = pipeline.predict(x_test)
     print(predictions.head())
+    
     metric_report = classification_report(
         y_test, predictions["predictions"], output_dict=True
     )
@@ -65,7 +66,8 @@ def log_sklearn_pipeline():
         mlflow.log_dict(
             dictionary=metric_report, artifact_file="classification_report.yaml"
         )
-
+        mlflow.log_metrics(metric_report["weighted avg"])
+                    
         mlflow.sklearn.log_model(
             sk_model=pipeline.pipeline,
             artifact_path="pipeline_model",
@@ -73,3 +75,33 @@ def log_sklearn_pipeline():
             signature=model_signature,
         )
 
+def student_performance_inference():
+    """
+    Function to perform inference on the student performance dataset.
+    """
+    # set tracking uri
+    mlflow.set_tracking_uri(get_project_root() / "mlruns")
+
+    # search for the run 
+    runs = mlflow.search_runs(
+        experiment_names = ["rf_classifier_sp"],
+        order_by=["metrics.f1_score desc"],
+
+    )
+    # show the results
+    print(runs[["run_id","metrics.recall","metrics.f1-score"]].head())
+
+    # get the best run
+    best_run = runs.iloc[0]
+    run_id = best_run["run_id"]
+    print(f"Best run id: {run_id}")
+
+    # load the model
+    model_uri = f"runs:/{run_id}/pipeline_model"
+    model = mlflow.sklearn.load_model(model_uri)
+    print(type(model))
+
+    _, x_test, _, _ = create_training_and_testing_dataset()
+
+    predictions = model.predict(x_test)
+    print(predictions)
