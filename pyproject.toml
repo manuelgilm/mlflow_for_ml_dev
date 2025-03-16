@@ -38,6 +38,9 @@ start_tutorial = 'mlflow_for_ml_dev.entrypoints.start_tutorial:run_notebook'
 log_sklearn_model = 'examples.student_performance.entrypoint:log_sklearn_pipeline'
 inference_student_performance = 'examples.student_performance.entrypoint:student_performance_inference'
 
+train_multi_model = 'examples.multi_model.entrypoint:train_multi_model'
+inference_multimodel = 'examples.multi_model.entrypoint:inference_multimodel'
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
