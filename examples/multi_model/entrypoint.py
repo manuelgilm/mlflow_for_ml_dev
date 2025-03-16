@@ -57,11 +57,10 @@ def train_multi_model():
 
 def inference_multimodel():
     """
-    Inference the multi model
+    Inference the multi model.
     """
-    x_train, x_test, y_train, y_test = get_train_test_data()
+    _, x_test, _, _ = get_train_test_data()
 
-    client = mlflow.MlflowClient()
     model_name = "multi_model"
 
     #get the champion model
