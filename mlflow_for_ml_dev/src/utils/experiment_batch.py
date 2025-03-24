@@ -1,9 +1,10 @@
-import random 
+import random
 from typing import List
-import mlflow 
+import mlflow
 
-def create_experiments_batch(n_exp:int)->List[str]:
-    """ 
+
+def create_experiments_batch(n_exp: int) -> List[str]:
+    """
     Create a batch of experiments with random tags.
 
     :param n_exp: Number of experiments to create
@@ -16,10 +17,18 @@ def create_experiments_batch(n_exp:int)->List[str]:
         tags = {
             "random_experiment": "yes",
             "mlflow.note.content": "This is a note",
-            "project_type": random.choice(["experiment", "production", "research", "development"]),
-            "algorithm_type": random.choice(["linear", "tree", "neural network", "ensemble"]),
-            "data_type": random.choice(["structured", "unstructured", "semi-structured"]),
-            "data_source": random.choice(["csv", "database", "api", "cloud", "streaming"]),
+            "project_type": random.choice(
+                ["experiment", "production", "research", "development"]
+            ),
+            "algorithm_type": random.choice(
+                ["linear", "tree", "neural network", "ensemble"]
+            ),
+            "data_type": random.choice(
+                ["structured", "unstructured", "semi-structured"]
+            ),
+            "data_source": random.choice(
+                ["csv", "database", "api", "cloud", "streaming"]
+            ),
             "data_quality": random.choice(["high", "medium", "low"]),
             "data_size": random.choice(["small", "medium", "large"]),
             "inference_type": random.choice(["batch", "online"]),
@@ -29,7 +38,8 @@ def create_experiments_batch(n_exp:int)->List[str]:
 
     return experiment_ids
 
-def delete_experiments_batch(experiment_ids:List[str]):
+
+def delete_experiments_batch(experiment_ids: List[str]):
     """
     Delete the experiments created in the batch.
 
