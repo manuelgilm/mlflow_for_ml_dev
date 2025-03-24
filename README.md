@@ -78,10 +78,69 @@ After installing Poetry, to create the virtual environment (.venv) you can run:
 
 - `mlflow_for_ml_dev` package
     - notebooks 
-        - experiments.
-            * Main Concepts.
-            * Retrieve Experiments.
-            * Restore Experiments.
+        - experiment Tracking Fundamentals.
+            * Starting with MLflow Experiments. Notebook: [1_1_experiments_create_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_1_experiments_create_experiments.ipynb):
+                - video: 
+                - video: 
+            * Retrieve Experiments. Notebook: [1_2_experiments_retrieve_experiment](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_2_experiments_retrieve_experiments.ipynb).
+                - video:
+                - video:
+            
+            * Updating Experiments. Notebook:[1_3_experiments_update_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_3_experiments_update_experiments.ipynb).
+                - video:
+                - video:
+            * Deleting experiments. Notebook: [1_4_experiments_delete_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_4_experiments_delete_experiments.ipynb)
+                - video
+                - video
+            * Starting with MLflow runs. Notebook: [2_1_runs_create_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_1_runs_create_run.ipynb)
+                - video
+                - video
+            * Retrieving runs. Notebook: [2_2_runs_retrieve_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_2_runs_retrieve_run.ipynb)
+                - video
+                - video
+            * Updating runs. Notebook: [2_3_runs_update_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_3_runs_update_run.ipynb)
+                - video
+                - video
+            * Deleting runs. Notebook: [2_4_runs_delete_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_4_runs_delete_run.ipynb)
+                - video
+                - video
+            * Starting with login functions. Notebook: [3_1_login_functions](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_1_login_functions.ipynb)
+                - video
+                - video
+            * Login ML models. Notebook: [3_2_logging_models](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_2_logging_models.ipynb)
+                - video
+                - video
+            * Model Signature. Notebook: [3_3_model_signature](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_3_model_signature.ipynb)
+                - video
+                - video
+            * Signature Enforcement. Notebook: [3_4_signture_enforcement](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_4_signature_enforcement.ipynb)
+                - video
+                - video
+            * Custom functions. Notebook: [4_1_log_custom_functions](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/4_1_log_custom_functions.ipynb)
+                - video
+                - video
+            * Custom functions context. Notebook: [4_2_custom_functions_context](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/4_2_custom_functions_context.ipynb)
+                - video
+                - video
+            * Registering a model. Notebook: [5_1_registering_a_model](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_1_registering_a_model.ipynb)
+                - video
+                - video
+            * Update Registered Model. Notebook: [5_2_update_registered_model](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_2_update_registered_model.ipynb)
+                - video
+                - video
+            * Update model version. Notebook: [5_3_update_model_version](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_3_update_model_version.ipynb)
+                - video
+                - video
+            * Retrieving Model Information. Notebook: [5_4_retrieve_model_info](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_4_retrieve_model_info.ipynb)
+                - video
+                - video
+            * Loading a registered model. Notebook: [5_5_loading_registered_models](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_5_loading_registered_models.ipynb)
+                - video
+                - video
+            * Deleting registered models. Notebook: [5_6_delete_registered_model_info](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_6_delete_registered_model_info.ipynb)
+                - video
+                - video
+
             
 ## Contributing
 
