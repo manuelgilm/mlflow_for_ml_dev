@@ -46,13 +46,12 @@ def get_model_signature(input:pd.DataFrame, output:pd.Series, params:Dict[str, s
     return ModelSignature(inputs=input_schema, outputs=output_schema, params=param_schema)
     
 
-def set_alias():
+def set_alias(model_name: str):
     """
     Set the alias for the model
     """
     # search versions
     client = mlflow.MlflowClient()
-    model_name = "multi_model"
     model_versions = client.search_model_versions(f"name='{model_name}'")
 
     # set alias to the latest version

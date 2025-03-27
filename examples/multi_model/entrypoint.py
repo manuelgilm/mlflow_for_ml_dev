@@ -45,15 +45,16 @@ def train_multi_model():
         mlflow.set_tag("mlflow.note.content", "Custom model trained with random data")
         mlflow.log_metrics(metrics_repot["weighted avg"])
 
+        registered_model_name = "multi_model"
         mlflow.pyfunc.log_model(
             artifact_path="multi_model",
             python_model=multi_classifier,
             signature=signature,
             input_example=x_train.sample(5),
-            registered_model_name="multi_model",
+            registered_model_name=registered_model_name,
         )
 
-    set_alias()
+    set_alias(model_name = registered_model_name)
 
 def inference_multimodel():
     """
@@ -61,10 +62,10 @@ def inference_multimodel():
     """
     _, x_test, _, _ = get_train_test_data()
 
-    model_name = "multi_model"
+    registered_model_name = "multi_model"
 
     #get the champion model
-    model_uri = f"models:/{model_name}@champion"
+    model_uri = f"models:/{registered_model_name}@champion"
     model = mlflow.pyfunc.load_model(model_uri)
 
     predictions = model.predict(x_test, params={"algo": "decision_tree"})
