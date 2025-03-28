@@ -1,10 +1,9 @@
-import mlflow 
+import mlflow
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 
 class MultiClassifier(mlflow.pyfunc.PythonModel):
-    
 
     def __init__(self):
         algos = ["random_forest", "decision_tree"]
@@ -33,7 +32,7 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
             return DecisionTreeClassifier()
         else:
             raise ValueError(f"Model {algo} not found")
-        
+
     def predict(self, context, model_input, params={}):
         """
         Predict the target values
@@ -50,4 +49,3 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
         print("Predicting with model: ", algo)
         model = self.models[algo]
         return model.predict(model_input)
-

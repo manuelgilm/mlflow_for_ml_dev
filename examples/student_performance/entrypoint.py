@@ -6,20 +6,28 @@ from examples.student_performance.src.data_processing import (
 )
 from mlflow_for_ml_dev.src.utils.folder_operations import get_project_root
 from examples.utils.mlflow_utils import get_or_create_experiment
-from sklearn.metrics import classification_report
 import mlflow
 from mlflow.models.signature import infer_signature
+import sys
 
 
 def log_sklearn_pipeline():
     """
     Login the sklearn pipeline.
+
+    possible values for algo: random_forest, decision_tree
     """
+    try:
+        algo = sys.argv[1]
+    except IndexError:
+        # default value
+        algo = "random_forest"
+
+    print("Algorithm: ", algo)
     x_train, x_test, y_train, y_test = create_training_and_testing_dataset()
     numerical_columns = get_numerical_features()
     categorical_columns = get_categorical_features()
     target_column = "GradeClass"
-    algo = "random_forest"
     experiment_name = "rf_classifier_sp"
     pipeline = TrainingPipeline(
         algo=algo,
@@ -36,21 +44,19 @@ def log_sklearn_pipeline():
 
     # set tracking uri
     mlflow.set_tracking_uri(get_project_root() / "mlruns")
+
     # set experiment
-    experiment = get_or_create_experiment(
-        name=experiment_name,
-        tags={"algo": algo, "project_name": "student_performance"},
-    )
+    experiment = get_or_create_experiment(name=experiment_name)
     # set the experiment description
     mlflow.set_experiment_tag(
         key="mlflow.note.content",
         value="Experiment to test the random forest classifier on the student performance dataset.",
     )
+    mlflow.set_experiment_tag(key="algo", value=algo)
+    mlflow.set_experiment_tag(key="project_name", value="student_performance")
 
     model_signature = infer_signature(x_test, y_test)
-    with mlflow.start_run(
-        experiment_id=experiment.experiment_id
-    ) as run:
+    with mlflow.start_run(experiment_id=experiment.experiment_id) as run:
         # Set description for the run
         mlflow.set_tag(
             "mlflow.note.content", "Run to test the random forest classifier."
@@ -58,7 +64,7 @@ def log_sklearn_pipeline():
         mlflow.set_tag("algo", algo)
         mlflow.set_tag("project_name", "student_performance")
         mlflow.log_params(pipeline.pipeline.get_params())
-         
+
         mlflow.sklearn.log_model(
             sk_model=pipeline.pipeline,
             artifact_path="pipeline_model",
@@ -71,13 +77,11 @@ def log_sklearn_pipeline():
         eval_data["target"] = y_test
 
         eval_result = mlflow.evaluate(
-            model = model_uri,
-            data = eval_data,
-            targets = "target",
-            model_type = "classifier",
-            evaluator_config = {
-                "metric_prefix": "eval_"
-            }
+            model=model_uri,
+            data=eval_data,
+            targets="target",
+            model_type="classifier",
+            evaluator_config={"metric_prefix": "eval_"},
         )
 
 
@@ -90,15 +94,14 @@ def student_performance_inference():
     # set tracking uri
     mlflow.set_tracking_uri(get_project_root() / "mlruns")
 
-    # search for the run 
+    # search for the run
     runs = mlflow.search_runs(
-        experiment_names = [experiment_name],
+        experiment_names=[experiment_name],
         filter_string=f"tags.algo = '{algo}'",
         order_by=["metrics.eval_f1_score desc"],
-
     )
     # show the results
-    print(runs[["run_id","metrics.eval_recall_score","metrics.eval_f1_score"]].head())
+    print(runs[["run_id", "metrics.eval_recall_score", "metrics.eval_f1_score"]].head())
 
     # get the best run
     best_run = runs.iloc[0]
