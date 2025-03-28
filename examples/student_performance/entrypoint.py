@@ -88,9 +88,17 @@ def log_sklearn_pipeline():
 def student_performance_inference():
     """
     Function to perform inference on the student performance dataset.
+
+    Possible values for algo: random_forest, decision_tree
     """
+    try:
+        algo = sys.argv[1]
+    except IndexError:
+        # default value
+        algo = "random_forest"
+
     experiment_name = "rf_classifier_sp"
-    algo = "random_forest"
+    print("Algorithm: ", algo)
     # set tracking uri
     mlflow.set_tracking_uri(get_project_root() / "mlruns")
 
