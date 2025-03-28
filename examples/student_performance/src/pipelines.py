@@ -111,4 +111,3 @@ class TrainingPipeline:
         return pd.DataFrame(
             {"predictions": predictions, "predictions_proba": predictions_proba}
         )
-    
