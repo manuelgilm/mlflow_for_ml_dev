@@ -33,7 +33,7 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
         else:
             raise ValueError(f"Model {algo} not found")
 
-    def predict(self, context, model_input, params={}):
+    def predict(self, context, model_input, params):
         """
         Predict the target values
 
@@ -41,11 +41,23 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
         :param model_input: The input data
         :param params: The model parameters
         :return: The predicted target values
-        """
-        if params:
-            algo = params.get("algo", "random_forest")
-        else:
-            algo = "random_forest"
-        print("Predicting with model: ", algo)
-        model = self.models[algo]
+        """       
+        print("Predicting with model: ", self.algo)
+        model = self.models[self.algo]
         return model.predict(model_input)
+    
+    def load_context(self, context):
+        """
+        Load the context
+        """
+        print(context)
+        self.algo = context.model_config.get("algo", None)
+        print(self.algo)
+        if self.algo is None:
+            raise ValueError("Model config not found")
+
+        if self.algo not in ["random_forest", "decision_tree"]:
+            raise ValueError(f"Model {self.algo} not found")
+
+    
+    
