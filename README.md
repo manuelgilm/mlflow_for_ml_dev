@@ -141,6 +141,15 @@ After installing Poetry, to create the virtual environment (.venv) you can run:
                 - video
                 - video
 
+        - Traditional ML Evaluation with MLflow
+            * Model Evaluation with Mlflow. Notebook: [1_1_model_evaluation_with_mlflow](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_1_model_evaluation_with_mlflow.ipynb)
+
+            * Defining custom metrics. Notebook: [1_2_custom_metrics](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_2_custom_metrics.ipynb)
+
+            * Custom artifacts. Notebook: [1_3_custom_artifacts](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_3_custom_artifacts.ipynb)
+
+            * More about models and evaluation. Notebook: [1_4_evaluation_with_functions](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_4_evaluation_with_functions.ipynb)
+
             
 ## Contributing
 
