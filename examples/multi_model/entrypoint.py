@@ -29,13 +29,13 @@ def train_multi_model():
     experiment_name = "multi_model"
     experiment = get_or_create_experiment(
         name=experiment_name,
-        tags={"project_name": "student_performance"},
+        tags={"project_name": "multi_model"},
     )
 
     # set the experiment description
     mlflow.set_experiment_tag(
         key="mlflow.note.content",
-        value="Experiment to test the random forest classifier on the student performance dataset.",
+        value="Experiment to test the multi model implementation with sklearn",
     )
 
     signature = get_model_signature(x_train, y_train, {"algo": algo})
@@ -86,7 +86,7 @@ def inference_multimodel():
 
     # get the champion model
     model_uri = f"models:/{registered_model_name}@champion"
-    model = mlflow.pyfunc.load_model(model_uri, model_config={"algo": algo})
+    model = mlflow.pyfunc.load_model(model_uri, model_config={"algo": None})
 
     predictions = model.predict(x_test)
     print(predictions)
