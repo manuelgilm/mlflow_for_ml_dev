@@ -15,6 +15,8 @@ Custom model creation is also addressed in this section, demonstrating how to us
 
 ## Traditional ML Model Evaluation.
 
+This section focuses on evaluating traditional machine learning models using the `mlflow.evaluate` method. It provides an overview of model evaluation fundamentals, including how to assess model performance. Additionally, it demonstrates how to define custom metrics to tailor evaluations to specific use cases and create custom artifacts to enhance the evaluation process. These concepts are essential for gaining deeper insights into model behavior and improving the overall quality of machine learning workflows.
+
 
 # Package: `mlflow_for_ml_dev`
 
@@ -72,6 +74,24 @@ After installing Poetry, to create the virtual environment (.venv) you can run:
 * Install requirements.
 
     `pip install -r requirements.txt`
+
+Note: If you are not using poetry to manage the project, and instead created a virtual environment the functions defined in the entrypoints modules cannot be executed directly through the command line. You need to refactor the code to be able to execute a given function in the python script, for example:
+
+```python
+
+def train_multi_model():
+    ...
+    ...
+
+if __name__=="__main__":
+    train_multi_model()
+```
+
+Then, run:
+
+```cmd
+(.venv) python path/to/script.py
+```
 
 
 ## Content: 
