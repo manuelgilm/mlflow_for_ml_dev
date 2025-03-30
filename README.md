@@ -83,9 +83,7 @@ def train_multi_model():
     ...
 
 if __name__ == "__main__":
-    import sys
-    if len(sys.argv) > 1 and sys.argv[1] == "train_multi_model":
-        train_multi_model()
+    train_multi_model()
 ```
 
 Then, run the script with the desired function as an argument:
