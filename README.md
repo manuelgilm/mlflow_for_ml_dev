@@ -75,24 +75,24 @@ After installing Poetry, to create the virtual environment (.venv) you can run:
 
     `pip install -r requirements.txt`
 
-Note: If you are not using poetry to manage the project, and instead created a virtual environment the functions defined in the entrypoints modules cannot be executed directly through the command line. You need to refactor the code to be able to execute a given function in the python script, for example:
+> **Note:** If you are not using Poetry to manage the project and instead created a virtual environment, the functions defined in the entry point modules cannot be executed directly through the command line. To address this, you need to refactor the code to allow execution of specific functions within the Python script. For example:
 
 ```python
-
 def train_multi_model():
-    ...
+    # Your training logic here
     ...
 
-if __name__=="__main__":
-    train_multi_model()
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "train_multi_model":
+        train_multi_model()
 ```
 
-Then, run:
+Then, run the script with the desired function as an argument:
 
 ```cmd
-(.venv) python path/to/script.py
+(.venv) python path/to/script.py train_multi_model
 ```
-
 
 ## Content: 
 
