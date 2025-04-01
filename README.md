@@ -93,23 +93,25 @@ Then, run the script with the desired function as an argument:
 ```
 
 ## Content: 
+### Introduction:
+- [Introduction to the playlist](https://youtu.be/5pPflDSdFLg)
+- [Experiments & Runs in MLflow](https://youtu.be/c3OaZjm-n8g)
 
 - `mlflow_for_ml_dev` package
     - notebooks 
         - experiment Tracking Fundamentals.
             * Starting with MLflow Experiments. Notebook: [1_1_experiments_create_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_1_experiments_create_experiments.ipynb):
-                - video: 
-                - video: 
+                - video: [2. Starting with MLflow Experiments](https://youtu.be/xzXWoqX6A9o) 
+                
             * Retrieve Experiments. Notebook: [1_2_experiments_retrieve_experiment](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_2_experiments_retrieve_experiments.ipynb).
-                - video:
-                - video:
+                - video: [3. Retrieving MLflow Experiments.](https://youtu.be/M4FI-_qdlrI)
+                
             
             * Updating Experiments. Notebook:[1_3_experiments_update_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_3_experiments_update_experiments.ipynb).
-                - video:
-                - video:
+                - video: [4. Updating MLflow experiments](https://youtu.be/hs5645Z3W94)
             * Deleting experiments. Notebook: [1_4_experiments_delete_experiments](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/1_4_experiments_delete_experiments.ipynb)
-                - video
-                - video
+                - video: [5. Deleting MLflow Experiments.](https://youtu.be/W6Lex3leBFI)
+                
             * Starting with MLflow runs. Notebook: [2_1_runs_create_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_1_runs_create_run.ipynb)
                 - video
                 - video
