@@ -113,62 +113,80 @@ Then, run the script with the desired function as an argument:
                 - video: [5. Deleting MLflow Experiments.](https://youtu.be/W6Lex3leBFI)
                 
             * Starting with MLflow runs. Notebook: [2_1_runs_create_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_1_runs_create_run.ipynb)
-                - video
-                - video
+                - video: [6. Runs, creating a MLflow Run](https://youtu.be/dbIcyaShlM8)
+                - video: [7. Runs, Using runs as context manager](https://youtu.be/Z6_BtG_sxAc)
+                - video: [8. Runs, Using the MLflow client to manage runs.](https://youtu.be/AkPUuNO4_WY)
+
             * Retrieving runs. Notebook: [2_2_runs_retrieve_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_2_runs_retrieve_run.ipynb)
-                - video
-                - video
+                - video: [9. Runs, retrieving MLflow runs.](https://youtu.be/vHX33prW_cU)
             * Updating runs. Notebook: [2_3_runs_update_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_3_runs_update_run.ipynb)
-                - video
-                - video
-            * Deleting runs. Notebook: [2_4_runs_delete_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_4_runs_delete_run.ipynb)
-                - video
-                - video
+                - video: [10. Runs, Updating run tags.](https://youtu.be/T0c61XRyUCQ)
+            * Nested runs. Notebook: [2_4_runs_nested_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_4_runs_nested_runs.ipynb)
+                - video: [11. Runs, nested runs.](https://youtu.be/qPg6-Jrzksw)
+            * Delete a run. Notebook: [2_5_runs_delete_run](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/2_5_runs_delete_run.ipynb)
+                - video: [12. Runs, Delete MLflow runs.](https://youtu.be/ycnMkjmbtxc)
             * Starting with login functions. Notebook: [3_1_login_functions](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_1_login_functions.ipynb)
-                - video
-                - video
+                - video: [13. Login functions. Metrics.](https://youtu.be/You0arp42MA)
+                - video: [14. Login Functions, artifacts](https://youtu.be/U__zJudlKNg)
+                - video: [15. Login Functions. Dictionaries and figures.](https://youtu.be/1vBmdSNGY7A)
             * Login ML models. Notebook: [3_2_logging_models](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_2_logging_models.ipynb)
-                - video
-                - video
+                - video: [16. MLflow Models. what's a flavor?](https://youtu.be/CCHgaAioBAg)
+                - video: [17. MLflow models. The sklearn flavor.](https://youtu.be/-4zffRcHbks)
             * Model Signature. Notebook: [3_3_model_signature](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_3_model_signature.ipynb)
-                - video
-                - video
+                - video: [18. MLflow models. Model Signature.](https://youtu.be/A7gTCrQV7to)
+                
             * Signature Enforcement. Notebook: [3_4_signture_enforcement](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/3_4_signature_enforcement.ipynb)
-                - video
-                - video
+                - video: [19. MLflow models, signature enforcement.](https://youtu.be/pUggO6OCHzY)
+                - video: [20. MLflow Models, signature with optional columns.](https://youtu.be/xHjN_iS71TU)
+                - video: [21. MLflow Models. Infer model signature.](https://youtu.be/dBP1-H1wKfc)
             * Custom functions. Notebook: [4_1_log_custom_functions](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/4_1_log_custom_functions.ipynb)
-                - video
-                - video
+                - video: [22. MLflow Models. Pyfunc Flavor.](https://youtu.be/KQnSgnj_QRY)
+                - video: [23. MLflow Models, Class based models.](https://youtu.be/fLvCKse0Qto)
+                - video: [24. MLflow Models, Custom Models with Signature.](https://youtu.be/UuvJH4Z3CYI)
+
             * Custom functions context. Notebook: [4_2_custom_functions_context](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/4_2_custom_functions_context.ipynb)
-                - video
-                - video
+                - video: [25. MLflow Models. Python Model Context](https://youtu.be/FUlw9p7nx1U)
+                - video: [26. MLflow Models. Python Model Context Part 2](https://youtu.be/JB3nLYnWpoc)
+                
             * Registering a model. Notebook: [5_1_registering_a_model](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_1_registering_a_model.ipynb)
-                - video
-                - video
+                - video: [27. Model Registry.](https://youtu.be/qxO872AhKNU)
+                - video: [28. Model Registry. Registering a Model using the Python SDK.](https://youtu.be/3D_dEeU_OR8)
+                
             * Update Registered Model. Notebook: [5_2_update_registered_model](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_2_update_registered_model.ipynb)
-                - video
-                - video
+                - video: [29. Model Registry. Updating model metadata](https://youtu.be/hIqZwnPXYi0)
+                - video: [30. Model Registry. Updating model metadata Part 2](https://youtu.be/71OiVI7PJM8)
+
             * Update model version. Notebook: [5_3_update_model_version](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_3_update_model_version.ipynb)
-                - video
-                - video
+                - video: [31. Model Registry. Updating model metadata Part 3.](https://youtu.be/8_RGIB8itX4)
             * Retrieving Model Information. Notebook: [5_4_retrieve_model_info](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_4_retrieve_model_info.ipynb)
-                - video
-                - video
+                - video: [32. Model Registry. Retrieving models.](https://youtu.be/P-zk1vMN0-0)
             * Loading a registered model. Notebook: [5_5_loading_registered_models](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_5_loading_registered_models.ipynb)
-                - video
-                - video
+                - video: [33. Model Registry. Retrieving a registered  model.](https://youtu.be/jJfDNq2a80Y)
+                
             * Deleting registered models. Notebook: [5_6_delete_registered_model_info](/mlflow_for_ml_dev/notebooks/experiment_tracking_fundamentals/5_6_delete_registered_model_info.ipynb)
-                - video
-                - video
+                - video: [34. Model Registry. Removing model metadata.](https://youtu.be/pe5vMdjJttc)
 
         - Traditional ML Evaluation with MLflow
             * Model Evaluation with Mlflow. Notebook: [1_1_model_evaluation_with_mlflow](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_1_model_evaluation_with_mlflow.ipynb)
+                - video: [35. Model Evaluation.](https://youtu.be/Fxv5INhlrkk)
+                - video: [36. Model Evaluation. Part 2.](https://youtu.be/tnn_LNqj-i8)
+                - video: [37. Model Evaluation. Part 3](https://youtu.be/IsY9ye169Ao)
 
             * Defining custom metrics. Notebook: [1_2_custom_metrics](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_2_custom_metrics.ipynb)
+                - video: [38. Model Evaluation. Custom Metrics.](https://youtu.be/j2NDuKyf3GI)
+                - video: [39. Model Evaluation. Custom Metrics Part 2.](https://youtu.be/rPmrBMwaAgc)
+                - video: [40. Model Evaluation. Custom Metrics Part 3](https://youtu.be/os8dkwE5mpA)
 
             * Custom artifacts. Notebook: [1_3_custom_artifacts](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_3_custom_artifacts.ipynb)
+                - video: [41. Model Evaluation. Custom Artifacts.](https://youtu.be/_LE9Go4h6-c)
 
             * More about models and evaluation. Notebook: [1_4_evaluation_with_functions](/mlflow_for_ml_dev/notebooks/traditional_ml_evaluation/1_4_evaluation_with_functions.ipynb)
+                - video: [42. Model Evaluation. More about evaluate method.](https://youtu.be/ttm--W1OBVU)
+            
+            - Example:
+                * Custom model (multimodel) Code: [multimodel](/examples/multi_model/)
+                    - video: [43. Example 1. Custom model (multimodel)](https://youtu.be/ttm--W1OBVU)
+                    - video: [44. Example 1. Custom model (multimodel) Part 2](https://youtu.be/yqvkXNADsYU)
 
             
 ## Contributing
