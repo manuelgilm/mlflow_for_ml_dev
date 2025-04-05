@@ -1,6 +1,6 @@
 # MLflow for Machine Learning Development
 
-This repository is part of the playlist on Youtube named: MLflow for Machine Learning Development (yet to be created)
+This repository is part of the playlist on Youtube named: [MLflow for Machine Learning Development (new)](https://www.youtube.com/playlist?list=PLQqR_3C2fhUUOmaeowgv4WquvH515zVmo)
 
 # Notebooks 
 
