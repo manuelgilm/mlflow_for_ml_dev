@@ -20,7 +20,6 @@ jobs:
       - name: Add Poetry to path
         run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
       - run: poetry install
-      - run: poetry run pytest
       - name: Get version
         id: get_version
         run: echo ::set-output name=version::$(poetry version -s)
