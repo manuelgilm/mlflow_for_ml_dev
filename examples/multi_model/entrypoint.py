@@ -7,6 +7,7 @@ from mlflow_for_ml_dev.src.utils.folder_operations import get_project_root
 import mlflow
 import sys
 
+
 def train_multi_model():
     """
     Train the multi model
@@ -43,7 +44,7 @@ def train_multi_model():
     with mlflow.start_run(experiment_id=experiment.experiment_id) as run:
         mlflow.set_tag("model_type", "multi_model")
         mlflow.set_tag("mlflow.note.content", "Custom model trained with random data")
-        
+
         registered_model_name = "multi_model"
         mlflow.pyfunc.log_model(
             artifact_path="multi_model",
@@ -64,7 +65,7 @@ def train_multi_model():
             targets="target",
             model_type="classifier",
             evaluator_config={"metric_prefix": "eval_"},
-            model_config = {"algo": algo}
+            model_config={"algo": algo},
         )
 
     set_alias(model_name=registered_model_name)

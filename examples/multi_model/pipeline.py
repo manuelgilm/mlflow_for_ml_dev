@@ -41,7 +41,7 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
         :param model_input: The input data
         :param params: The model parameters
         :return: The predicted target values
-        """       
+        """
         if self.algo is None:
             print("Algo not found in context")
             self.algo = params.get("algo", None)
@@ -53,7 +53,7 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
         print("Predicting with model: ", self.algo)
         model = self.models[self.algo]
         return model.predict(model_input)
-    
+
     def load_context(self, context):
         """
         Load the context
@@ -63,5 +63,3 @@ class MultiClassifier(mlflow.pyfunc.PythonModel):
         print(self.algo)
         if self.algo is None:
             print("Algo not found in context")
-    
-    
