@@ -93,7 +93,7 @@ Then, run the script with the desired function as an argument:
 ```
 
 ## Content: 
-### Introduction:
+### Experiment Tracking with MLflow:
 - [Introduction to the playlist](https://youtu.be/5pPflDSdFLg)
 - [Experiments & Runs in MLflow](https://youtu.be/c3OaZjm-n8g)
 
@@ -188,7 +188,13 @@ Then, run the script with the desired function as an argument:
                     - video: [43. Example 1. Custom model (multimodel)](https://youtu.be/ttm--W1OBVU)
                     - video: [44. Example 1. Custom model (multimodel) Part 2](https://youtu.be/yqvkXNADsYU)
 
-            
+
+### Local Model Serving with MLflow
+
+#### Iris Classifier Example: Getting predictions via API requests.
+* Package: `examples/iris_classifier`
+* Video: <Pending>
+
 ## Contributing
 
 If you want to contribute to this project and make it better, your help is very welcome. Contributing is also a great way to learn more and improve your skills. You can contribute in different ways:
