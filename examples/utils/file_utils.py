@@ -10,7 +10,7 @@ def get_root_dir() -> Path:
 
     :return root_dir: Path to the root directory.
     """
-    return Path(__file__).parents[1]
+    return Path(__file__).parents[2]
 
 
 def read_csv(file_path: Path):
