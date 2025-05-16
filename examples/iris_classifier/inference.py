@@ -1,5 +1,5 @@
 import mlflow
-from utils.decorators import mlflow_tracking_uri
+from examples.utils.decorators import mlflow_tracking_uri
 from examples.iris_classifier.data import get_train_test_data
 
 

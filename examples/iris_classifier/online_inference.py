@@ -1,4 +1,4 @@
-from usecases.iris_classifier.data import get_train_test_data
+from examples.iris_classifier.data import get_train_test_data
 import httpx
 import json
 import pandas as pd
