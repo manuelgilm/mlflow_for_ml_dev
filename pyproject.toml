@@ -40,6 +40,11 @@ inference_student_performance = 'examples.student_performance.entrypoint:student
 train_multi_model = 'examples.multi_model.entrypoint:train_multi_model'
 inference_multimodel = 'examples.multi_model.entrypoint:inference_multimodel'
 
+iris_clf_train ="examples.iris_classifier.train:main"
+iris_clf_inference = "examples.iris_classifier.inference:main"
+iris_clf_online_inference="examples.iris_classifier.online_inference:main"
+
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
