@@ -192,7 +192,11 @@ Then, run the script with the desired function as an argument:
 
 In this section, we explore how MLflow enables local model serving. You'll learn how to launch a local MLflow server to deploy and serve ML models, making them accessible for real-time predictions via REST API endpoints. This approach is useful for testing, prototyping, and integrating models into local applications before moving to production environments.
 
-#### Iris classifier. 
+#### Usecases
+* Iris classifier 
+
+* Digit Recognition
+
 
 
 
