@@ -188,6 +188,13 @@ Then, run the script with the desired function as an argument:
                     - video: [43. Example 1. Custom model (multimodel)](https://youtu.be/ttm--W1OBVU)
                     - video: [44. Example 1. Custom model (multimodel) Part 2](https://youtu.be/yqvkXNADsYU)
 
+### Local Model Serving Use cases.
+
+In this section, we explore how MLflow enables local model serving. You'll learn how to launch a local MLflow server to deploy and serve ML models, making them accessible for real-time predictions via REST API endpoints. This approach is useful for testing, prototyping, and integrating models into local applications before moving to production environments.
+
+#### Iris classifier. 
+
+
 
 ## Contributing
 
