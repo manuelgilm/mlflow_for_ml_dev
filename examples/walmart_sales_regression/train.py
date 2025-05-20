@@ -4,7 +4,7 @@ from examples.utils.file_utils import get_root_dir
 from examples.utils.decorators import mlflow_tracking_uri
 from examples.utils.decorators import mlflow_client
 from examples.utils.decorators import mlflow_experiment
-
+from examples.utils.mlflow_utils import set_alias_to_latest_version
 import mlflow
 
 
@@ -21,7 +21,6 @@ def main(**kwargs):
         root_dir.parents[1] / "Downloads" / "sales-walmart" / "Walmart_Sales.csv"
     )  # change this to your data path
 
-    # data_path = "../../Downloads/sales-walmart/Walmart_Sales.csv"
     data_processor = SalesDataProcessor(path=data_path)
     x_train, x_test, y_train, y_test = data_processor.create_train_test_split()
     print("Data loaded and split into training and testing sets.")
@@ -46,6 +45,7 @@ def main(**kwargs):
 
         # Log the entire class as a model
         signature = store_sales_regressor._get_model_signature()
+        # log model without code
         mlflow.pyfunc.log_model(
             artifact_path="store-sales-regressor",
             python_model=store_sales_regressor,
@@ -53,18 +53,24 @@ def main(**kwargs):
             signature=signature,
         )
 
+        # log model with code
+        mlflow.pyfunc.log_model(
+            artifact_path="store-sales-regressor-code",
+            python_model=store_sales_regressor,
+            infer_code_paths=True,
+            registered_model_name=registered_model_name + "-code",
+            signature=signature,
+        )
+
         print("Models fitted successfully.")
 
-        # Set the model version alias to "production"
-        model_version = mlflow.search_model_versions(
-            filter_string=f"name='{registered_model_name}'",
-            max_results=1,
-        )[0]
-        client = kwargs["mlflow_client"]
-        print(f"Model version: {model_version.version}")
-        print(f"Model name: {model_version.name}")
-        client.set_registered_model_alias(
-            name=registered_model_name,
-            version=model_version.version,
+        set_alias_to_latest_version(
+            registered_model_name=registered_model_name,
             alias="production",
+            client=kwargs["mlflow_client"],
+        )
+        set_alias_to_latest_version(
+            registered_model_name=registered_model_name + "-code",
+            alias="production",
+            client=kwargs["mlflow_client"],
         )

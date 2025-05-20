@@ -11,7 +11,7 @@ def main():
     `poetry run mlflow models serve -m models:/walmart-store-sales-regressor@production -p 5000 --no-conda`
     """
 
-    url = "http://localhost:5000/invocations"
+    url = "http://localhost:8080/invocations"
     data_path = "../../Downloads/sales-walmart/Walmart_Sales.csv"
     data_processor = SalesDataProcessor(path=data_path)
     _, x_test, _, y_test = data_processor.create_train_test_split()
