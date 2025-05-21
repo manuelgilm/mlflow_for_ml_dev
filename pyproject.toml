@@ -27,6 +27,7 @@ seaborn = "^0.13.2"
 ucimlrepo = "^0.0.7"
 keras = "^3.8.0"
 torch = "^2.6.0"
+pyenv-win = "^3.1.1"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.32.0"
@@ -47,6 +48,12 @@ iris_clf_online_inference="examples.iris_classifier.online_inference:main"
 digit_recog_train = "examples.digit_recognition.train:main"
 digit_recog_inference = "examples.digit_recognition.inference:main"
 digit_recog_online_inference = "examples.digit_recognition.online_inference:main"
+
+walmart_reg_train = "examples.walmart_sales_regression.train:main"
+walmart_reg_inference = "examples.walmart_sales_regression.inference:main"
+walmart_reg_online_inference = "examples.walmart_sales_regression.online_inference:main"
+
+
 
 [build-system]
 requires = ["poetry-core"]
