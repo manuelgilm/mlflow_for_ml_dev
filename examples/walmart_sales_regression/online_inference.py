@@ -22,7 +22,7 @@ def main():
     _, x_test, _, y_test = data_processor.create_train_test_split()
 
     # predicting for the store store_id
-    store_id = 2
+    store_id = 1
     x_test = x_test[x_test["Store"] == store_id]
     y_test = y_test[y_test["Store"] == store_id]
 
