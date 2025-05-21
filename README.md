@@ -197,7 +197,7 @@ In this section, we explore how MLflow enables local model serving. You'll learn
 
 * Digit Recognition
 
-
+* Walmart Sales Regression
 
 
 ## Contributing
