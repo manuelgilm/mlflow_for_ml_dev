@@ -50,7 +50,9 @@ digit_recog_inference = "examples.digit_recognition.inference:main"
 digit_recog_online_inference = "examples.digit_recognition.online_inference:main"
 
 walmart_reg_train = "examples.walmart_sales_regression.train:main"
+walmart_reg_inference = "examples.walmart_sales_regression.inference:main"
 walmart_reg_online_inference = "examples.walmart_sales_regression.online_inference:main"
+
 
 
 [build-system]
