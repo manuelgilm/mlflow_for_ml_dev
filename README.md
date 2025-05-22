@@ -199,6 +199,7 @@ In this section, we explore how MLflow enables local model serving. You'll learn
 
 * Walmart Sales Regression
 
+* Diabetes Prediction
 
 ## Contributing
 
