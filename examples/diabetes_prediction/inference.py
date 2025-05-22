@@ -12,11 +12,3 @@ def main(**kwargs) -> None:
     model = mlflow.pyfunc.load_model(model_uri=model_uri)
     predictions_with_probs = model.predict(x_test, params={"probabilities": True})
     print(predictions_with_probs.head())
-    # # Load the model and make predictions
-    # unwrapped_model = model.unwrap_python_model()
-    # print(type(model))
-    # print(type(unwrapped_model))
-    # categorical_features = unwrapped_model._get_categorical_features()
-    # print(categorical_features)
-    # predictions = model.predict(x_test)
-    # print(predictions)
