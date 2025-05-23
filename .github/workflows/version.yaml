@@ -1,0 +1,22 @@
+name: Update Project Version with Poetry
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened]
+    branches:
+      - develop
+
+jobs:
+  read_pr_comment:
+    name: Read PR Comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Get PR comment
+        id: get_pr_comment
+        run: |
+          echo "PR_COMMENT=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+          echo "PR_NUMBER=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+          echo "echo PR_COMMENT: $PR_COMMENT"
+          echo "echo PR_NUMBER: $PR_NUMBER"
