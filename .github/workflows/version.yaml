@@ -21,3 +21,5 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
           echo "PR_COMMENT=${{ github.event.comment.body }}" >> $GITHUB_ENV
           
+          echo "$PR_COMMENT"
+          
