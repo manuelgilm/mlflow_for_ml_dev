@@ -16,7 +16,8 @@ jobs:
       - name: Get PR comment
         id: get_pr_comment
         run: |
-          echo "PR_COMMENT=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
-          echo "PR_NUMBER=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
-          echo "echo PR_COMMENT: $PR_COMMENT"
-          echo "echo PR_NUMBER: $PR_NUMBER"
+          echo "PR_COMMENT<<EOF" >> $GITHUB_ENV
+          echo "${{ github.event.comment.body }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          echo "PR_COMMENT=${{ github.event.comment.body }}" >> $GITHUB_ENV
+          
