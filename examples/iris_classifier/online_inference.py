@@ -43,7 +43,7 @@ def main() -> None:
     Perform online inference using a REST API.
 
     To deploy the model in the local server, run the following command:
-    `poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --no-conda`
+    `poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --env-manager local`
 
     """
     payload, labels = get_payload(1)
