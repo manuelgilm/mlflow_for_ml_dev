@@ -6,16 +6,9 @@ import json
 import numpy as np
 
 
-def main() -> dict:
+def main() -> None:
     """
     Perform online inference using a REST API.
-
-    Args:
-        image_path (str): Path to the input image.
-        model_url (str): URL of the deployed model's REST API.
-
-    Returns:
-        dict: Inference results.
     """
     _, x_test, _, y_test = get_train_test_data()
     x_test = transform_to_image(x_test)

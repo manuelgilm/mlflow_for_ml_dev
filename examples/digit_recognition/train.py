@@ -20,7 +20,12 @@ import mlflow
 @mlflow_experiment(name="digit_recognition")
 @mlflow_client
 def main(**kwargs) -> None:
-    """ """
+    """
+    Train a model for handwritten digit recognition using the MNIST dataset.
+    This function prepares the data, builds a Keras model, trains it, and logs the model to MLflow.
+
+    To deploy the model in the local server, run the following command:
+    """
 
     x_train, x_val, _, y_train, y_val, _ = get_train_val_test_data()
     x_train = transform_to_image(x_train)
