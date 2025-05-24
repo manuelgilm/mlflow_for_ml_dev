@@ -33,6 +33,13 @@ Performs online inference. Before running this script, ensure that the model has
 poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --env-manager local
 ```
 
+## Digit Recognition
+
+This examples uses a public dataset from kaggle, for more details about the dataset, click [here](https://www.kaggle.com/datasets/bhavikjikadara/handwritten-digit-recognition) 
+
+* package: `examples/digit_recognition`
+
+* dataset source: [kaggle dataset](https://www.kaggle.com/datasets/bhavikjikadara/handwritten-digit-recognition)
 
 
 
