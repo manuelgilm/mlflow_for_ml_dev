@@ -3413,17 +3413,6 @@ files = [
 typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
-name = "pyenv-win"
-version = "3.1.1"
-description = "pyenv lets you easily switch between multiple versions of Python. It's simple, unobtrusive, and follows the UNIX tradition of single-purpose tools that do one thing well."
-optional = false
-python-versions = "*"
-files = [
-    {file = "pyenv-win-3.1.1.tar.gz", hash = "sha256:c5af094d574acad7a083359c822a185cc1e4c72fef7548fdd4ec82470480d8f8"},
-    {file = "pyenv_win-3.1.1-py3-none-any.whl", hash = "sha256:e96563bd541f0b242693aa7dc4107a6047ee90c37b814e5ad210b2a0aeacaaeb"},
-]
-
-[[package]]
 name = "pygments"
 version = "2.19.1"
 description = "Pygments is a syntax highlighting package written in Python."
@@ -4876,4 +4865,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "79eb19bf8cfbc5b8104801d2597237d6d8535569e79376f38f5ee1119f0b8dd6"
+content-hash = "907d6061a32a722388fd75b3ed55784fe85467a34770a26ce18d70f13d2bcd11"
