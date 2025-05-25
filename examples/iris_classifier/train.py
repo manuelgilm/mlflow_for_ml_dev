@@ -3,8 +3,10 @@ from examples.iris_classifier.data import get_train_test_data
 from examples.utils.decorators import mlflow_tracking_uri
 from examples.utils.decorators import mlflow_client
 from examples.utils.decorators import mlflow_experiment
+from examples.utils.mlflow_utils import set_alias_to_latest_version
 from typing import Optional
 from typing import Dict
+
 from mlflow.models import infer_signature
 import mlflow
 
@@ -51,13 +53,10 @@ def main(**kwargs) -> None:
         )
 
         # set model version alias to "production"
-        model_version = mlflow.search_model_versions(
-            filter_string=f"name='{registered_model_name}'", max_results=1
-        )[0]
-        client.set_registered_model_alias(
-            name=registered_model_name,
-            version=model_version.version,
+        set_alias_to_latest_version(
+            registered_model_name=registered_model_name,
             alias="production",
+            client=client,
         )
 
         # model uri
