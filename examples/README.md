@@ -15,8 +15,7 @@ This example uses the classic Iris dataset, which is included in the scikit-lear
 * dataset source: [sklearn load_iris method](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html)
 
 
-* Associated inference notebook:
-`mlflow_for_ml_dev/noteboks/local_model_serving/deploying_local_iris_model.ipynb`
+* Associated inference notebook:[deploying_local_iris_model.ipynb](/mlflow_for_ml_dev/notebooks/local_model_serving/deploying_local_iris_model.ipynb)
 
 ### Available Entrypoints: 
 
@@ -38,9 +37,7 @@ This examples uses a public dataset from kaggle, for more details about the data
 
 * dataset source: [kaggle dataset](https://www.kaggle.com/datasets/bhavikjikadara/handwritten-digit-recognition)
 
-* Associated inference notebook:
-
-`mlflow_for_ml_dev/noteboks/local_model_serving/deploying_local_digit_recognizer.ipynb`
+* Associated inference notebook: [deploying_local_digit_recognizer.ipynb](/mlflow_for_ml_dev/notebooks/local_model_serving/deploying_local_digit_recognizer.ipynb)
 
 ### Available Entrypoints: 
 
@@ -53,3 +50,20 @@ This examples uses a public dataset from kaggle, for more details about the data
 ```
 poetry run mlflow models serve -m models:/Digit_Recognition_Model@production --env-manager local
 ```
+
+## Diabetes Prediction
+This example utilizes a publicly available dataset from Kaggle. The project highlights the importance of including additional code dependencies within the model to ensure reproducibility and seamless deployment.
+
+* package: `examples/diabetes_prediction`
+
+* Dataset Source: [Kaggle Dataset](https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset)
+
+* Associated Inference Notebook: [deploying_local_diabetes_prediction.ipynb](/mlflow_for_ml_dev/notebooks//local_model_serving/deploying_local_diabetes_prediction.ipynb)
+
+### Available Entrypoints: 
+
+* `diabetes_pred_train`: Trains the model and register it in the Model registry with name **Diabetes_Prediction_Model**, The model is set with alias **production**
+* `diabetes_pred_inference`: Performs batch inference.
+* `diabetes_pred_online_inference`:  Performs online inference. Before running this script, ensure that the model has been trained and registered (for example, using the `diabetes_pred_train` script). Next, deploy the model locally by executing:
+
+`poetry run mlflow models serve -m models:/Digit_Recognition_Model@production --env-manager local`
