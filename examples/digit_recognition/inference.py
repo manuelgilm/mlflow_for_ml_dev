@@ -16,9 +16,6 @@ from sklearn.metrics import ConfusionMatrixDisplay
 def main():
     """
     Main function to run the batch inference process.
-
-    To deploy the model in the local server, run the following command:
-    `poetry run mlflow models serve -m models:/Digit_Recognition_Model@production --env-manager local`
     """
     # Load the model from the specified path
     _, _, x_test, _, _, y_test = get_train_val_test_data()
