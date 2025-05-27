@@ -33,14 +33,16 @@ def main(**kwargs) -> None:
             python_model=diabetes_model,
             registered_model_name=registered_model_name,
             signature=signature,
+            input_example=x_test.sample(5),
         )
 
         # registering the model with mlflow with infer_code_paths
         mlflow.pyfunc.log_model(
-            artifact_path="model",
+            artifact_path="model_with_code",
             python_model=diabetes_model,
             registered_model_name=registered_model_name + "_code",
             signature=signature,
+            input_example=x_test.sample(5),
             infer_code_paths=True,
         )
 
