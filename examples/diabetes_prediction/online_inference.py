@@ -47,18 +47,6 @@ def main() -> None:
     # print(payload)
     payload = {
         "dataframe_split": {
-            "index": [
-                75721,
-                80184,
-                19864,
-                76699,
-                92991,
-                76434,
-                84004,
-                80917,
-                60767,
-                50074,
-            ],
             "columns": [
                 "gender",
                 "age",

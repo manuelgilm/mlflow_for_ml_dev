@@ -40,7 +40,7 @@ class DiabetesPrediction(mlflow.pyfunc.PythonModel):
         # train the model
         self.model = pipeline.fit(x_train, y_train)
 
-    def predict(self, context, model_input, params: Optional[Dict[str, str]] = {}):
+    def predict(self, context, model_input, params: Optional[Dict[str, str]] = None):
         """
         Predict method for the custom model.
         This method is called when making predictions with the model.
@@ -53,7 +53,7 @@ class DiabetesPrediction(mlflow.pyfunc.PythonModel):
             print("Model not loaded")
             return None
 
-        if params.get("probabilities", None):
+        if params and params.get("probabilities", None):
             predictions_df = self._predict_with_probabilities(model_input)
             return predictions_df
 
