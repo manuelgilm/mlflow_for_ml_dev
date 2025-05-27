@@ -2,6 +2,7 @@ from examples.diabetes_prediction.core.data import get_train_test_data
 from examples.diabetes_prediction.core.base import DiabetesPrediction
 from examples.diabetes_prediction.core.pipeline import get_model_signature
 from examples.diabetes_prediction.core.data import get_feature_spec
+from examples.utils.mlflow_utils import set_alias_to_latest_version
 from examples.utils.decorators import mlflow_tracking_uri
 from examples.utils.decorators import mlflow_client
 from examples.utils.decorators import mlflow_experiment
@@ -25,24 +26,37 @@ def main(**kwargs) -> None:
     with mlflow.start_run() as run:
         # Log the model
         registered_model_name = "Diabetes_Prediction_Model"
+
+        # registering the model with mlflow without infer_code_paths
         mlflow.pyfunc.log_model(
             artifact_path="model",
             python_model=diabetes_model,
             registered_model_name=registered_model_name,
             signature=signature,
+            input_example=x_test.sample(5),
+        )
+
+        # registering the model with mlflow with infer_code_paths
+        mlflow.pyfunc.log_model(
+            artifact_path="model_with_code",
+            python_model=diabetes_model,
+            registered_model_name=registered_model_name + "_code",
+            signature=signature,
+            input_example=x_test.sample(5),
             infer_code_paths=True,
         )
 
-        # Set model version alias to "production"
-        model_version = mlflow.search_model_versions(
-            filter_string=f"name='{registered_model_name}'", max_results=1
-        )[0]
-        client = kwargs["mlflow_client"]
-        client.set_registered_model_alias(
-            name=registered_model_name,
-            version=model_version.version,
+        set_alias_to_latest_version(
+            registered_model_name=registered_model_name,
             alias="production",
+            client=kwargs["mlflow_client"],
         )
+        set_alias_to_latest_version(
+            registered_model_name=registered_model_name + "_code",
+            alias="production",
+            client=kwargs["mlflow_client"],
+        )
+
         eval_data = x_test.copy()
         eval_data["diabetes"] = y_test
 
