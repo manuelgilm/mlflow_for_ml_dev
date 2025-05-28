@@ -36,12 +36,11 @@ def get_payload(samples: int) -> dict:
     return payload, y_test.iloc[0:samples]
 
 
-# poetry run mlflow models build-docker --model-uri models:/Diabetes_Prediction_Model@production -n diabetes_prediction_model
+# poetry run mlflow models build-docker --model-uri models:/Diabetes_Prediction_Model_code@production -n diabetes_prediction_model
 def main() -> None:
     """
     Perform online inference using a REST API.
     """
-    # payload, labels = get_payload(10)
     url = "http://127.0.0.1:5000/invocations"
 
     # print(payload)
