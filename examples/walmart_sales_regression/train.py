@@ -50,6 +50,7 @@ def main(**kwargs):
             artifact_path="store-sales-regressor",
             python_model=store_sales_regressor,
             registered_model_name=registered_model_name,
+            input_example=x_test.sample(5),
             signature=signature,
         )
 
@@ -59,6 +60,7 @@ def main(**kwargs):
             python_model=store_sales_regressor,
             infer_code_paths=True,
             registered_model_name=registered_model_name + "-code",
+            input_example=x_test.sample(5),
             signature=signature,
         )
 
