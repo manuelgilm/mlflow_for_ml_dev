@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mlflow_for_ml_dev"
-version = "1.5.1"
+version = "1.5.2"
 description = "Code examples for the youtube playlist 'MLflow for Machine Learning Development' by Manuel Gil"
 authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
 readme = "README.md"
