@@ -10,6 +10,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from typing import List
+from typing import Optional
 from mlflow.models import infer_signature
 
 
@@ -141,9 +142,9 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
                 raise ValueError(f"Model for store ID {store_id} not found.")
             return self._predict(store_id, model_input)
         else:
-            raise ValueError("Store ID must be provided in params.")
+            return self._predict(None, model_input)
 
-    def _predict(self, store_id: int, x):
+    def _predict(self, store_id: Optional[int], x):
         """
         Predicts the target variable using the fitted model.
 
@@ -151,6 +152,11 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         :param x: The input data for prediction.
         :return: The predicted values.
         """
+        if store_id is None:
+            # If no store_id is provided, use the first available model
+            store_id = list(self.artifact_uris.keys())[0]
+            print(f"No store_id provided, using default store_id: {store_id}")
+
         model_path = self.artifact_uris[store_id]
         model = mlflow.sklearn.load_model(model_path)
         predictions = model.predict(x)
