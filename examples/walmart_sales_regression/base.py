@@ -28,6 +28,19 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         self.target = "Weekly_Sales"
         self.artifact_uris = {}
 
+    def load_context(self, context):
+        """
+        Load the context for the model, which includes the artifact URIs.
+
+        :param context: The context object containing the model.
+        :return: None
+        """
+        self.models = {
+            store_id: mlflow.sklearn.load_model(uri)
+            for store_id, uri in self.artifact_uris.items()
+        }
+        print(f"Model artifact URIs loaded: {self.artifact_uris}")
+
     def fit_model(self, x_train, y_train, store_id: int, run_id: str):
         """
         Fits a single model to the training data for a specific store.
@@ -157,7 +170,7 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
             store_id = list(self.artifact_uris.keys())[0]
             print(f"No store_id provided, using default store_id: {store_id}")
 
-        model_path = self.artifact_uris[store_id]
-        model = mlflow.sklearn.load_model(model_path)
+        model = self.models.get(store_id)
         predictions = model.predict(x)
+
         return predictions
