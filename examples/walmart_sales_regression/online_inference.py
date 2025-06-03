@@ -28,7 +28,7 @@ def main():
 
     payload = {
         "dataframe_split": x_test.to_dict(orient="split"),
-        "params": {"store_id": store_id},
+        "params": {"store_id": str(store_id)},
     }
     headers = {"Content-Type": "application/json"}
     response = httpx.post(url, json=payload, headers=headers)

@@ -52,6 +52,7 @@ def main(**kwargs):
             registered_model_name=registered_model_name,
             input_example=x_test.sample(5),
             signature=signature,
+            artifacts=store_sales_regressor.artifact_uris,
         )
 
         # log model with code
@@ -62,6 +63,7 @@ def main(**kwargs):
             registered_model_name=registered_model_name + "-code",
             input_example=x_test.sample(5),
             signature=signature,
+            artifacts=store_sales_regressor.artifact_uris,
         )
 
         print("Models fitted successfully.")

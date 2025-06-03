@@ -12,6 +12,7 @@ from sklearn.impute import SimpleImputer
 from typing import List
 from typing import Optional
 from mlflow.models import infer_signature
+from pathlib import Path
 
 
 class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
@@ -35,9 +36,11 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         :param context: The context object containing the model.
         :return: None
         """
+
+        model_artifacts = context.artifacts
         self.models = {
             store_id: mlflow.sklearn.load_model(uri)
-            for store_id, uri in self.artifact_uris.items()
+            for store_id, uri in model_artifacts.items()
         }
         print(f"Model artifact URIs loaded: {self.artifact_uris}")
 
@@ -77,7 +80,7 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
                 ].iloc[0:1],
             )
             mlflow.log_params({"store_id": store_id})
-            self.artifact_uris[store_id] = (
+            self.artifact_uris[str(store_id)] = (
                 f"runs:/{run.info.run_id}/model_store_{store_id}"
             )
 
@@ -96,7 +99,7 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         ]
 
         param_specification = [
-            ParamSpec(dtype="integer", name="store_id", default=1),
+            ParamSpec(dtype="string", name="store_id", default="1"),
         ]
         param_schema = ParamSchema(
             params=param_specification,
@@ -150,14 +153,14 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         :return: Predicted values.
         """
         if params is not None:
-            store_id = params.get("store_id", 1)
+            store_id = params.get("store_id", "1")
             if store_id not in self.artifact_uris.keys():
                 raise ValueError(f"Model for store ID {store_id} not found.")
             return self._predict(store_id, model_input)
         else:
             return self._predict(None, model_input)
 
-    def _predict(self, store_id: Optional[int], x):
+    def _predict(self, store_id: Optional[str], x):
         """
         Predicts the target variable using the fitted model.
 
