@@ -1,10 +1,12 @@
 from examples.walmart_sales_regression.data import SalesDataProcessor
 from examples.walmart_sales_regression.base import WalmartSalesRegressor
 from examples.utils.file_utils import get_root_dir
+from examples.utils.file_utils import read_file
 from examples.utils.decorators import mlflow_tracking_uri
 from examples.utils.decorators import mlflow_client
 from examples.utils.decorators import mlflow_experiment
 from examples.utils.mlflow_utils import set_alias_to_latest_version
+
 import mlflow
 
 
@@ -15,6 +17,9 @@ def main(**kwargs):
     """
     Train the Walmart sales regression model.
     """
+    root = get_root_dir()
+    configs = read_file(root / "examples" / "walmart_sales_regression" / "configs.yaml")
+
     registered_model_name = "walmart-store-sales-regressor"
     root_dir = get_root_dir()
     data_path = (
@@ -31,7 +36,7 @@ def main(**kwargs):
     x_test = x_test[x_test["Store"].isin([1, 2, 3])]
     y_test = y_test[y_test["Store"].isin([1, 2, 3])]
 
-    store_sales_regressor = WalmartSalesRegressor()
+    store_sales_regressor = WalmartSalesRegressor(config=configs)
 
     with mlflow.start_run(run_name="walmart-sales-regressors") as run:
 

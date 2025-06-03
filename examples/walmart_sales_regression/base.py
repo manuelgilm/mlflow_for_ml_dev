@@ -12,7 +12,6 @@ from sklearn.impute import SimpleImputer
 from typing import List
 from typing import Optional
 from mlflow.models import infer_signature
-from pathlib import Path
 
 
 class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
@@ -20,13 +19,13 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
     Custom MLflow model for sales regression.
     """
 
-    def __init__(self):
+    def __init__(self, config):
         """
         Initialize the WalmartSalesRegressor.
         """
-        self.numerical_features = ["Holiday_Flag"]
-        self.categorical_features = ["Temperature", "Fuel_Price", "CPI", "Unemployment"]
-        self.target = "Weekly_Sales"
+        self.numerical_features = config["numerical_features"]
+        self.categorical_features = config["categorical_features"]
+        self.target = config["target"]
         self.artifact_uris = {}
 
     def load_context(self, context):

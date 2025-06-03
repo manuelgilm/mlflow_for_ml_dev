@@ -1,0 +1,10 @@
+numerical_features:
+  - "Temperature"
+  - "Fuel_Price"
+  - "CPI"
+  - "Unemployment"
+
+categorical_features:
+  - Holiday_Flag
+
+target: "Weekly_Sales"
