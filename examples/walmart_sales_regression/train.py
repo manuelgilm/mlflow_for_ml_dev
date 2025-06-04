@@ -20,13 +20,13 @@ def main(**kwargs):
     root = get_root_dir()
     configs = read_file(root / "examples" / "walmart_sales_regression" / "configs.yaml")
 
-    registered_model_name = "walmart-store-sales-regressor"
+    registered_model_name = configs["registered_model_name"]
     root_dir = get_root_dir()
     data_path = (
         root_dir.parents[1] / "Downloads" / "sales-walmart" / "Walmart_Sales.csv"
     )  # change this to your data path
 
-    data_processor = SalesDataProcessor(path=data_path)
+    data_processor = SalesDataProcessor(path=data_path, configs=configs)
     x_train, x_test, y_train, y_test = data_processor.create_train_test_split()
     print("Data loaded and split into training and testing sets.")
 
@@ -38,7 +38,7 @@ def main(**kwargs):
 
     store_sales_regressor = WalmartSalesRegressor(config=configs)
 
-    with mlflow.start_run(run_name="walmart-sales-regressors") as run:
+    with mlflow.start_run(run_name=configs["run_name"]) as run:
 
         for store_id in x_train["Store"].unique():
             store_sales_regressor.fit_model(
@@ -52,7 +52,7 @@ def main(**kwargs):
         signature = store_sales_regressor._get_model_signature()
         # log model without code
         mlflow.pyfunc.log_model(
-            artifact_path="store-sales-regressor",
+            artifact_path=configs["artifact_path"],
             python_model=store_sales_regressor,
             registered_model_name=registered_model_name,
             input_example=x_test.sample(5),
@@ -62,7 +62,7 @@ def main(**kwargs):
 
         # log model with code
         mlflow.pyfunc.log_model(
-            artifact_path="store-sales-regressor-code",
+            artifact_path=configs["artifact_path"] + "-code",
             python_model=store_sales_regressor,
             infer_code_paths=True,
             registered_model_name=registered_model_name + "-code",

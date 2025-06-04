@@ -8,3 +8,7 @@ categorical_features:
   - Holiday_Flag
 
 target: "Weekly_Sales"
+# Model configuration
+registered_model_name: "walmart-store-sales-regressor"
+run_name: "walmart-sales-regressors"
+artifact_path: "store-sales-regressor"
