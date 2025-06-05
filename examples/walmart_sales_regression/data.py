@@ -2,17 +2,20 @@ from pathlib import Path
 from typing import Union
 import pandas as pd
 from typing import Tuple
+from typing import Dict
+from typing import Any
 from sklearn.model_selection import train_test_split
 
 
 class SalesDataProcessor:
-    def __init__(self, path):
+    def __init__(self, path, configs: Dict[str, Any]):
         """
         Initialize the SalesDataProcessor with the path to the data and the data itself.
 
         :param path: Path to the data file.
         """
         self.load_data(path)
+        self.configs = configs
 
     def load_data(self, path: Union[str, Path]) -> None:
         """
@@ -36,9 +39,9 @@ class SalesDataProcessor:
         :return: Tuple containing the training and testing sets.
         """
         df = self.data.copy()
-        numerical_features = ["Holiday_Flag"]
-        categorical_features = ["Temperature", "Fuel_Price", "CPI", "Unemployment"]
-        target = "Weekly_Sales"
+        numerical_features = self.configs["numerical_features"]
+        categorical_features = self.configs["categorical_features"]
+        target = self.configs["target"]
 
         # drop date
         df = df.drop(columns=["Date"])

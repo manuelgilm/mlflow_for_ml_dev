@@ -19,13 +19,13 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
     Custom MLflow model for sales regression.
     """
 
-    def __init__(self):
+    def __init__(self, config):
         """
         Initialize the WalmartSalesRegressor.
         """
-        self.numerical_features = ["Holiday_Flag"]
-        self.categorical_features = ["Temperature", "Fuel_Price", "CPI", "Unemployment"]
-        self.target = "Weekly_Sales"
+        self.numerical_features = config["numerical_features"]
+        self.categorical_features = config["categorical_features"]
+        self.target = config["target"]
         self.artifact_uris = {}
 
     def load_context(self, context):
@@ -35,9 +35,11 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         :param context: The context object containing the model.
         :return: None
         """
+
+        model_artifacts = context.artifacts
         self.models = {
             store_id: mlflow.sklearn.load_model(uri)
-            for store_id, uri in self.artifact_uris.items()
+            for store_id, uri in model_artifacts.items()
         }
         print(f"Model artifact URIs loaded: {self.artifact_uris}")
 
@@ -77,9 +79,26 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
                 ].iloc[0:1],
             )
             mlflow.log_params({"store_id": store_id})
-            self.artifact_uris[store_id] = (
+            self.artifact_uris[str(store_id)] = (
                 f"runs:/{run.info.run_id}/model_store_{store_id}"
             )
+
+    def predict(self, context, model_input, params=None):
+        """
+        Perform prediction using the model.
+
+        :param context: The context object containing the model.
+        :param model_input: Input data for prediction.
+        :param params: Additional parameters for prediction.
+        :return: Predicted values.
+        """
+        if params is not None:
+            store_id = params.get("store_id", "1")
+            if store_id not in self.artifact_uris.keys():
+                raise ValueError(f"Model for store ID {store_id} not found.")
+            return self._predict(store_id, model_input)
+        else:
+            return self._predict(None, model_input)
 
     def _get_model_signature(self) -> ModelSignature:
         """
@@ -96,7 +115,7 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         ]
 
         param_specification = [
-            ParamSpec(dtype="integer", name="store_id", default=1),
+            ParamSpec(dtype="string", name="store_id", default="1"),
         ]
         param_schema = ParamSchema(
             params=param_specification,
@@ -140,24 +159,7 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
 
         return pipeline
 
-    def predict(self, context, model_input, params=None):
-        """
-        Perform prediction using the model.
-
-        :param context: The context object containing the model.
-        :param model_input: Input data for prediction.
-        :param params: Additional parameters for prediction.
-        :return: Predicted values.
-        """
-        if params is not None:
-            store_id = params.get("store_id", 1)
-            if store_id not in self.artifact_uris.keys():
-                raise ValueError(f"Model for store ID {store_id} not found.")
-            return self._predict(store_id, model_input)
-        else:
-            return self._predict(None, model_input)
-
-    def _predict(self, store_id: Optional[int], x):
+    def _predict(self, store_id: Optional[str], x):
         """
         Predicts the target variable using the fitted model.
 
