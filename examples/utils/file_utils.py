@@ -2,6 +2,11 @@ from pathlib import Path
 from typing import Optional
 from typing import Union
 import pandas as pd
+from typing import Optional
+from typing import Dict
+from typing import Any
+import yaml
+import pkgutil
 
 
 def get_root_dir() -> Path:
@@ -24,12 +29,29 @@ def read_csv(file_path: Path):
     return df
 
 
+def read_yaml(file_path: Path) -> Dict[str, Any]:
+    """
+    Read a YAML file and return its contents as a dictionary.
+
+    :param file_path: Path to the YAML file.
+    :return data: Dictionary containing the YAML file contents.
+    """
+    with open(file_path, "r") as file:
+        data = yaml.safe_load(file)
+    return data
+
+
 def reader(extension: str) -> Optional[callable]:
     """
     Get the appropriate reader function based on the file extension.
+
+    :param extension: File extension (e.g., '.csv').
+    :return reader_func: Function to read the file, or None if no reader is found.
     """
     readers = {
         ".csv": read_csv,
+        ".yaml": read_yaml,
+        ".yml": read_yaml,
     }
 
     return readers.get(extension, None)
