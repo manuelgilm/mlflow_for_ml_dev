@@ -12,7 +12,8 @@ from sklearn.impute import SimpleImputer
 from typing import List
 from typing import Optional
 from mlflow.models import infer_signature
-
+from pathlib import Path
+import platform
 
 class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
     """
@@ -35,11 +36,25 @@ class WalmartSalesRegressor(mlflow.pyfunc.PythonModel):
         :param context: The context object containing the model.
         :return: None
         """
-
-        model_artifacts = context.artifacts
+        if platform.system() == "Linux":
+            # Convert Windows-style paths to POSIX paths for Linux compatibility
+            print("Converting Windows-style paths to POSIX paths for Linux compatibility...")
+            context_artifacts = {
+                key: str(Path(value).as_posix()) for key, value in context.artifacts.items()
+            }
+        
+        else:
+            # Use the context artifacts as is for non-Linux systems
+            print("Using context artifacts as is for non-Linux systems...")
+            context_artifacts = context.artifacts
+        
+        print("Loading model artifacts from context...")
+        print(f"Context artifact URIs: {context_artifacts}")
+        model_artifacts = self.artifact_uris
+        print(f"Loading model artifact URIs: {model_artifacts}")
         self.models = {
             store_id: mlflow.sklearn.load_model(uri)
-            for store_id, uri in model_artifacts.items()
+            for store_id, uri in context_artifacts.items()
         }
         print(f"Model artifact URIs loaded: {self.artifact_uris}")
 

@@ -70,7 +70,8 @@ def main(**kwargs):
             signature=signature,
             artifacts=store_sales_regressor.artifact_uris,
         )
-
+        print("artifact uris:")
+        print(store_sales_regressor.artifact_uris)
         print("Models fitted successfully.")
 
         set_alias_to_latest_version(
