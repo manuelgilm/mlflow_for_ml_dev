@@ -28,14 +28,14 @@ def main():
     print("Model loaded.")
 
     # # predicting for the store store_id
-    store_id = "2"
-    x_test = x_test[x_test["Store"] == int(store_id)]
-    y_test = y_test[y_test["Store"] == int(store_id)]
+    store_id = 2
+    x_test = x_test[x_test["Store"] == store_id]
+    y_test = y_test[y_test["Store"] == store_id]
     x_test = x_test.drop(columns=["Store"])
     y_test = y_test.drop(columns=["Store"])
 
     # make predictions
-    predictions = model.predict(x_test, params={"store_id": store_id})
+    predictions = model.predict(x_test, params={"store_id": str(store_id)})
 
     weekly_sales = y_test[configs["target"]].values
     print(

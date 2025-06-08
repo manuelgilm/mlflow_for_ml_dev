@@ -9,6 +9,6 @@ categorical_features:
 
 target: "Weekly_Sales"
 # Model configuration
-registered_model_name: "walmart-store-sales-regressor"
+registered_model_name: "walmart-store-sales-regressor-code"
 run_name: "walmart-sales-regressors"
 artifact_path: "store-sales-regressor"
