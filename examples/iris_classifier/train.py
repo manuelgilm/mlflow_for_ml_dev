@@ -1,3 +1,4 @@
+# imports
 from sklearn.ensemble import RandomForestClassifier
 from examples.iris_classifier.data import get_train_test_data
 from examples.utils.decorators import mlflow_tracking_uri
@@ -15,7 +16,6 @@ import mlflow
 def main(**kwargs) -> None:
     """
     Main function to train a Random Forest Classifier on the Iris dataset.
-    This function retrieves training and test data, trains the model, logs parameters,
     """
 
     # Get training and test data
