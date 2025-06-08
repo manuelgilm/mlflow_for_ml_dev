@@ -10,7 +10,7 @@ def main():
     Perform online inference using a REST API.
 
     To deploy the model using the local server, run the following command:
-    `poetry run mlflow models serve -m models:/walmart-store-sales-regressor@production -p 5000 --env-manager local`
+    `poetry run mlflow models serve -m models:/walmart-store-sales-regressor-code@production -p 5000 --env-manager local`
     """
 
     url = "http://localhost:5000/invocations"

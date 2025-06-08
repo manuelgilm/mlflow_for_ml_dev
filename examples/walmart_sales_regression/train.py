@@ -60,26 +60,8 @@ def main(**kwargs):
             artifacts=store_sales_regressor.artifact_uris,
         )
 
-        # log model with code
-        mlflow.pyfunc.log_model(
-            artifact_path=configs["artifact_path"] + "-code",
-            python_model=store_sales_regressor,
-            infer_code_paths=True,
-            registered_model_name=registered_model_name + "-code",
-            input_example=x_test.sample(5),
-            signature=signature,
-            artifacts=store_sales_regressor.artifact_uris,
-        )
-
-        print("Models fitted successfully.")
-
         set_alias_to_latest_version(
             registered_model_name=registered_model_name,
-            alias="production",
-            client=kwargs["mlflow_client"],
-        )
-        set_alias_to_latest_version(
-            registered_model_name=registered_model_name + "-code",
             alias="production",
             client=kwargs["mlflow_client"],
         )

@@ -85,7 +85,8 @@ poetry run mlflow models build-docker --model-uri models:/Diabetes_Prediction_Mo
 
 
 ## Walmart Sales
-This example uses a public dataset on Walmart sales over a specific period. The primary goal of this use case is to demonstrate how to deploy multiple models using a single serving endpoint. Additionally, it highlights some limitations of MLflow's ability to automatically generate the appropriate Dockerfile for model deployment.
+
+This example utilizes a public dataset containing Walmart sales data over a defined period. The main objective is to showcase how to deploy multiple models through a single serving endpoint. In this scenario, a separate model is trained for each store, and all store-specific models are saved as artifacts when registering the final model. This approach enables flexible and scalable deployment for store-level predictions.
 
 * package: `examples/walmart_sales_regression`
 
