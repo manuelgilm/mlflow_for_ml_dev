@@ -27,6 +27,7 @@ seaborn = "^0.13.2"
 ucimlrepo = "^0.0.7"
 keras = "^3.8.0"
 torch = "^2.6.0"
+fastapi = {extras = ["standard"], version = "^0.115.13"}
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.32.0"
