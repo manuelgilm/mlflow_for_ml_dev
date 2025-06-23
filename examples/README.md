@@ -28,6 +28,30 @@ This example uses the classic Iris dataset, which is included in the scikit-lear
 ```
 poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --env-manager local
 ```
+#### Local Inference Server for Iris Model.
+
+This folder includes a lightweight FastAPI application that loads the Iris classifier model via MLflow. It exposes a single endpoint for performing online inference, allowing you to send prediction requests and receive results in real time.
+
+**To run the local inference server** 
+
+```batch
+poetry run fastapi dev examples/iris_inference_server
+```
+
+**To used the local endpoint run the following Python code**
+```python
+import json 
+import requests
+
+headers = {"Content-Type": "application/json"}
+url = "http://127.0.0.1:8000/predict" # 8000 corresponds with the port
+data = {"features":[1.4, 3.2, 1.3, 2.5]}
+response = requests.post(url=url, headers= headers, data = json.dumps(data))
+if response.status_code == 200:
+    print(response.json())
+else:
+    print(response.text)
+```
 
 ## Digit Recognition
 
