@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi import Request
 from typing import List
 from contextlib import asynccontextmanager
-
+import pandas as pd
 ml_models = {}
 
 
@@ -44,12 +44,14 @@ async def root(request: Request):
     body = await request.json()
     print("Body received:", body)
     features = body.get("features", None)
+    columns = body.get("columns", None)
     if not features or not isinstance(features, List):
         return {"error": "Invalid input. 'features' must be a list."}
     model = ml_models.get("Iris_Classifier_Model", None)
     if model:
         # Assuming the model has a predict method
-        prediction = model.predict([features])
+        features = pd.DataFrame([features], columns=columns)
+        prediction = model.predict(features)
         return {"prediction": prediction.tolist()}
     else:
         return {"error": "Model not found."}
