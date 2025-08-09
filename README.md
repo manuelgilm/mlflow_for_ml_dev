@@ -187,6 +187,8 @@ Then, run the script with the desired function as an argument:
                 * Custom model (multimodel) Code: [multimodel](/examples/multi_model/)
                     - video: [43. Example 1. Custom model (multimodel)](https://youtu.be/ttm--W1OBVU)
                     - video: [44. Example 1. Custom model (multimodel) Part 2](https://youtu.be/yqvkXNADsYU)
+                * Local Inference Server with FastAPI
+                    - video: [45. Iris API - Creating a local inference server with FastAPI](https://youtu.be/77weZmwE4ag)
 
 ### Local Model Serving Use cases.
 
