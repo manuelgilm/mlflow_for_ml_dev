@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mlflow_for_ml_dev"
-version = "1.7.2"
+version = "1.8.0"
 description = "Code examples for the youtube playlist 'MLflow for Machine Learning Development' by Manuel Gil"
 authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
 readme = "README.md"
@@ -28,6 +28,7 @@ ucimlrepo = "^0.0.7"
 keras = "^3.8.0"
 torch = "^2.6.0"
 fastapi = {extras = ["standard"], version = "^0.115.13"}
+pydantic = "^2.11.7"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.32.0"
