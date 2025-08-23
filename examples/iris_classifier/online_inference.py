@@ -9,6 +9,9 @@ def mlflow_endpoints():
     """
     Showcase MLflow model serving endpoints.
 
+    Command to run the local inference server
+    `poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --env-manager local`
+
     The inference server provides 4 endpoints:
 
     /invocations: An inference endpoint that accepts POST requests with input data and returns predictions.
@@ -47,8 +50,6 @@ def invocation_csv():
     """
     This function uses the CSV format for online inference.
     """
-    # payload, headers, labels = get_request_body("text/csv")
-    # Make the REST API call to perform online inference
     _, x_test, _, y_test = get_train_test_data()
     samples = 3  # Number of samples to include in the payload
 
@@ -85,9 +86,26 @@ def invocation_json():
     _, x_test, _, y_test = get_train_test_data()
     samples = 3  # Number of samples to include in the payload
 
+    data = x_test.iloc[0:samples]
+
+    print(data.head())
+
+    # renaming the column sepal length (cm) 
+    # data = data.rename(columns={"sepal length (cm)": "sl"})
+
+    # updating the value of a single column to use str
+    # data["sepal length (cm)"].iloc[0] = "invalid_value"
+
+    print(data.head())
     payload = json.dumps({
-        "dataframe_split": x_test.iloc[0:samples].to_dict(orient="split"),
+        "dataframe_split": data.to_dict(orient="split"),
     })
+
+    print(payload)
+
+    # Modify payload to make it fail.
+
+    
     headers = {"Content-Type": "application/json"}
 
     url = "http://127.0.0.1:5000/invocations"
