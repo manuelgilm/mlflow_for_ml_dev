@@ -43,35 +43,25 @@ def mlflow_endpoints():
     print(f"Response status code: {response.status_code}")
     print(response.text)
 
-
-def main() -> None:
+def invocation_csv():
     """
-    Perform online inference using a REST API.
-
-    To deploy the model in the local server, run the following command:
-    `poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --env-manager local`
-
-    Documentation about MLflow input format can be found here: 
-    https://mlflow.org/docs/latest/ml/deployment/deploy-model-locally/
+    This function uses the CSV format for online inference.
     """
-    # Load the test data
+    # payload, headers, labels = get_request_body("text/csv")
+    # Make the REST API call to perform online inference
     _, x_test, _, y_test = get_train_test_data()
     samples = 3  # Number of samples to include in the payload
 
-    # Uncomment the following line to make the api call fail
-    # x_test["sepal length (cm)"] = ["" for _ in range(len(x_test))]
+    payload = x_test.iloc[0:samples].to_csv(index=False)
 
-    # define the payload for online inference
-    payload = {
-        "dataframe_split": x_test.iloc[0:samples].to_dict(orient="split"),
-    }
+    # show payload example
+    print(payload)
+    # specify content-type as "text/csv"
+    headers = {"Content-Type": "text/csv"}
 
-    # Define the endpoint URL and headers for the REST API call
     url = "http://127.0.0.1:5000/invocations"
-    headers = {"Content-Type": "application/json"}
 
-    # Make the REST API call to perform online inference
-    response = httpx.post(url, data=json.dumps(payload), headers=headers)
+    response = httpx.post(url, data=payload, headers=headers)
     if response.status_code == 200:
         json_response = response.json()
         predictions = json_response.get("predictions")
@@ -87,3 +77,36 @@ def main() -> None:
             }
         )
     )
+
+def invocation_json():
+    """
+    This function uses the JSON format for online inference.
+    """
+    _, x_test, _, y_test = get_train_test_data()
+    samples = 3  # Number of samples to include in the payload
+
+    payload = json.dumps({
+        "dataframe_split": x_test.iloc[0:samples].to_dict(orient="split"),
+    })
+    headers = {"Content-Type": "application/json"}
+
+    url = "http://127.0.0.1:5000/invocations"
+
+    response = httpx.post(url, data=payload, headers=headers)
+    if response.status_code == 200:
+        json_response = response.json()
+        predictions = json_response.get("predictions")
+    else:
+        raise Exception(f"Error: {response.status_code} - {response.text}")
+
+    # Print the predictions and corresponding labels
+    print(
+        pd.DataFrame(
+            {
+                "predictions": predictions,
+                "labels": y_test.iloc[0:samples].values,
+            }
+        )
+    )
+
+
