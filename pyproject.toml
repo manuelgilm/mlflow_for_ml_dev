@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mlflow_for_ml_dev"
-version = "1.8.0"
+version = "1.8.1"
 description = "Code examples for the youtube playlist 'MLflow for Machine Learning Development' by Manuel Gil"
 authors = ["Manuel Gil <manuelgilsitio@gmail.com>"]
 readme = "README.md"
@@ -45,6 +45,7 @@ inference_multimodel = 'examples.multi_model.entrypoint:inference_multimodel'
 iris_clf_train ="examples.iris_classifier.train:main"
 iris_clf_inference = "examples.iris_classifier.inference:main"
 iris_clf_online_inference="examples.iris_classifier.online_inference:main"
+iris_clf_serving_enpoints="examples.iris_classifier.online_inference:mlflow_endpoints"
 
 digit_recog_train = "examples.digit_recognition.train:main"
 digit_recog_inference = "examples.digit_recognition.inference:main"

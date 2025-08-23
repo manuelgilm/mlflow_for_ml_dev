@@ -3,6 +3,45 @@ from examples.iris_classifier.data import get_train_test_data
 import httpx
 import json
 import pandas as pd
+import sys 
+
+def mlflow_endpoints():
+    """
+    Showcase MLflow model serving endpoints.
+
+    The inference server provides 4 endpoints:
+
+    /invocations: An inference endpoint that accepts POST requests with input data and returns predictions.
+
+    /ping: Used for health checks.
+
+    /health: Same as /ping
+
+    /version: Returns the MLflow version.
+    """
+
+    base_url = "http://127.0.0.1:5000"
+
+    endpoints = {
+        "invocations": f"{base_url}/invocations", # post request
+        "ping": f"{base_url}/ping", # get request
+        "health": f"{base_url}/health", # get request
+        "version": f"{base_url}/version", # get request
+    }
+
+    # get parameter from cli
+    endpoint = sys.argv[1] if len(sys.argv) > 1 else "version"
+    if endpoint not in endpoints:
+        print(f"Invalid endpoint: {endpoint}")
+        sys.exit(1)
+    if endpoint == "invocations":
+        print("Use the main function in `online_inference.py` script to call the /invocations endpoint")
+        sys.exit(0)
+        
+    print(f"Calling MLflow endpoint: {endpoint}")
+    response = httpx.get(endpoints[endpoint])
+    print(f"Response status code: {response.status_code}")
+    print(response.text)
 
 
 def main() -> None:
