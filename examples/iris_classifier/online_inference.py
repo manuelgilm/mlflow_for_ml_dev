@@ -50,6 +50,9 @@ def main() -> None:
 
     To deploy the model in the local server, run the following command:
     `poetry run mlflow models serve -m models:/Iris_Classifier_Model@production --env-manager local`
+
+    Documentation about MLflow input format can be found here: 
+    https://mlflow.org/docs/latest/ml/deployment/deploy-model-locally/
     """
     # Load the test data
     _, x_test, _, y_test = get_train_test_data()
