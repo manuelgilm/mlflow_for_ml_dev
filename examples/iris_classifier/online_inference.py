@@ -101,11 +101,7 @@ def invocation_json():
         "dataframe_split": data.to_dict(orient="split"),
     })
 
-    print(payload)
-
-    # Modify payload to make it fail.
-
-    
+    print(payload)    
     headers = {"Content-Type": "application/json"}
 
     url = "http://127.0.0.1:5000/invocations"
